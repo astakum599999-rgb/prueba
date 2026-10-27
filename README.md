@@ -1,59 +1,67 @@
-# NexoISP 2.2.2 para XAMPP — credenciales PPPoE en Editar cliente
+# NexoISP 2.3.0 para XAMPP — editar usuario y contraseña PPPoE
 
-[**⬇ Descargar ZIP v2.2.2**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/nexoisp-xampp-v2.2.2-pppoe.zip)
+[**⬇ Descargar ZIP v2.3.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/nexoisp-xampp-v2.3.0-editar-pppoe.zip)
 
-[Checksum SHA-256](nexoisp-xampp-v2.2.2-pppoe.sha256) · [Demostración independiente](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/demostracion-nexoisp.html)
+[Checksum SHA-256](nexoisp-xampp-v2.3.0-editar-pppoe.sha256) · [Demostración independiente](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/demostracion-nexoisp.html)
 
-## Usuario y contraseña en Editar cliente
+## Edición desde Clientes
 
-Abre **Clientes → Editar → Credenciales PPPoE**. Aparecen el usuario, router y origen de cada cuenta asociada. Como **ADMIN**, pulsa **Mostrar contraseña** para consultar esa cuenta concreta. **Ocultar contraseña** elimina el valor de la interfaz; al cerrar la ventana también se descarta.
+Como **ADMIN**, abre **Clientes → Editar → Credenciales PPPoE**. Modifica **Usuario PPPoE** y/o escribe **Nueva contraseña PPPoE (opcional)**. Pulsa **Guardar cambios PPPoE en MikroTik** en esa cuenta y espera la confirmación.
 
-Los campos PPPoE son de **solo lectura**. Mostrar contraseña no guarda datos del cliente ni modifica usuarios, contraseñas o configuración del MikroTik. La consulta no necesita habilitar escritura en la red.
+**Ese botón actualiza la cuenta existente en tu MikroTik.** Dejar vacía la nueva contraseña conserva la actual. El equipo del cliente deberá usar los nuevos datos al autenticarse de nuevo. NexoISP no solicita desconectar sesiones ni cambia perfiles, IP, comentarios, velocidades u otras cuentas.
 
-Para cuentas importadas se lee únicamente la entrada seleccionada de `/ppp/secret`, comprobando su identificador y usuario exacto. La contraseña no se persiste en NexoISP y la importación masiva sigue excluyéndola. Si RouterOS la oculta, omite o deniega por permisos de lectura sensible, se muestra **No disponible** con una explicación. No se cambian las políticas del router. RADIUS externo no está incluido.
+El botón **Guardar cambios** del formulario principal continúa guardando los datos administrativos del cliente. Es independiente del guardado PPPoE. Al reimportar, el nombre sigue tomándose del comentario no vacío del router, según la regla anterior.
 
-Si existen servicios PPPoE locales anteriores, su contraseña cifrada guardada puede consultarse por separado; se identifica como **NexoISP** y puede diferir del valor actual en el router. El personal sin rol ADMIN puede consultar usuarios, pero no revelar contraseñas. Las cuentas del portal de clientes no tienen acceso a estas rutas.
+Sólo ADMIN puede editar o revelar credenciales. Los demás roles conservan la consulta. El acceso API RouterOS necesita permisos para escribir en `/ppp/secret`; para consultar contraseñas también necesita acceso a datos sensibles. NexoISP no cambia permisos del router.
 
-## Actualizar desde tu XAMPP
+## Actualizar tu XAMPP
 
 1. Respalda la base y guarda una copia privada de `storage\config.php`.
 2. Cierra el worker con Ctrl+C y detén Apache.
 3. Copia la carpeta `nexoisp` del ZIP sobre `C:\xampp\htdocs\nexoisp`, **conservando exactamente tu `storage\config.php`** y los archivos privados locales.
-4. Inicia Apache/MySQL y abre **http://localhost/nexoisp/**.
-5. Desde **2.2.1 no hay migraciones nuevas**. Si vienes de una versión anterior, aplica las pendientes en `actualizar.php` como ADMIN; la última es `008_currency_pen`.
-6. Vuelve a iniciar sesión y pulsa **Ctrl+F5** para cargar la nueva interfaz.
-7. Abre **Clientes → Editar** y consulta los campos PPPoE.
+4. Inicia Apache/MySQL y abre **http://localhost/nexoisp/actualizar.php** con tu ADMIN.
+5. Aplica **009_pppoe_edits** y las versiones anteriores pendientes, si las hubiera. La migración añade el registro local de ediciones; no modifica el router.
+6. Abre **http://localhost/nexoisp/**, vuelve a iniciar sesión y pulsa **Ctrl+F5** para cargar la interfaz nueva.
+7. Entra en **Clientes → Editar** y usa el botón específico para guardar las credenciales PPPoE.
 
-Los SQL 001–008 mantienen sus bytes y checksums. La actualización no reinstala la base ni cambia credenciales. No sobrescribas tu configuración privada: contiene la clave de cifrado de tu instalación.
+Los SQL 001–008 mantienen exactamente los bytes y checksums publicados. No se reinstala la base ni se cambian las claves de tu instalación. Se conservan PEN/S/, los nombres desde comentarios y el historial financiero con sus monedas originales.
 
-## Funciones conservadas
+## Escritura limitada a la cuenta seleccionada
 
-La moneda local predeterminada es **PEN — soles peruanos**, presentada como **S/**. Los importes y monedas históricos se conservan. Los nombres de clientes siguen viniendo del comentario del secret. **Planes de Internet → Importar perfiles de MikroTik** crea planes locales pendientes de tarifa; el precio comercial se configura explícitamente.
+Se verifica el cliente propietario, la versión de la cuenta, su identificador y usuario exactos en RouterOS. Los nombres duplicados y los vínculos ambiguos se rechazan antes de escribir. Renombrar actualiza la observación local y conserva cliente/código para que reimportar no lo duplique. Los servicios gestionados existentes requieren su comentario de propiedad y conservan sus vínculos y credenciales cifradas.
 
-El MikroTik permanece en **solo lectura**: cortes, reconexiones y cambios de configuración siguen bloqueados. El worker no ejecuta tareas mutantes antiguas ni agenda autocorte/facturación automática en este modo. La demo en **http://localhost/nexoisp/demo/** utiliza datos ficticios aislados, sin conectar al router ni a la API.
+La autorización manual sólo permite `name` y `password` de un secret existente. **Cortes, reconexiones, aprovisionamiento, firewall y demás cambios de red siguen bloqueados.** El worker no ejecuta tareas mutantes antiguas ni agenda autocorte/facturación automática. No cambies `network_read_only` para usar esta función.
+
+Si se pierde una respuesta después de enviar el cambio, el sistema no afirma que se deshizo ni repite la escritura automáticamente. Conserva la intención cifrada y muestra **Verificar cambios pendientes**; esa acción sólo consulta y sincroniza el resultado confirmado. Las importaciones de secrets y nuevas ediciones de ese router esperan a resolverlo para evitar duplicados. Otros routers siguen disponibles.
+
+Las contraseñas no aparecen en auditoría ni respuestas ordinarias. Una contraseña nueva pendiente se cifra; se elimina del registro temporal al confirmar o rechazar definitivamente. En un servicio gestionado se conserva cifrada en el propio servicio. Mostrar contraseña continúa siendo explícito y temporal; la importación masiva sigue excluyéndola.
 
 ## Instalación nueva
 
-Extrae `nexoisp` en `C:\xampp\htdocs`, inicia Apache/MySQL y abre **http://localhost/nexoisp/**. Completa el instalador con tus datos y crea tu administrador. Se requiere PHP 8.2 y MariaDB/MySQL. El frontend compilado y su fuente están incluidos; no necesitas Node.js, Docker, Redis ni Composer para usar el paquete.
+Extrae `nexoisp` en `C:\xampp\htdocs`, inicia Apache/MySQL y abre **http://localhost/nexoisp/**. Completa el instalador y crea tu administrador. Requiere PHP 8.2 y MariaDB/MySQL. Incluye frontend compilado y fuente; para usarlo no necesitas Node.js, Docker, Redis ni Composer.
+
+La demostración de facturas, pagos, promesas y suspensión está en **http://localhost/nexoisp/demo/**. Utiliza datos ficticios aislados y no configura el router.
 
 ## Validación
 
-617 comprobaciones PHP aprobadas, incluidas 101 nuevas para la lectura de credenciales; sintaxis correcta en los 24 archivos PHP. TypeScript/Vite compilado. Integración con instalador/MariaDB y suites API/Chromium: 108 comprobaciones de secrets, 65 de perfiles y 90 nuevas de credenciales. Se verificaron autenticación, roles, CSRF, pertenencia al cliente, valores exactos, contraseñas vacías/ocultas/omitidas, ausencia de persistencia en texto plano y botones que no guardan el formulario. **Cero solicitudes de configuración de RouterOS**.
+718 comprobaciones PHP aprobadas y sintaxis de 25 archivos PHP. TypeScript/Vite compilado. Las suites de API/Chromium de lectura pasaron 108 comprobaciones de secrets, 65 de perfiles y 90 de consulta de contraseñas sin escrituras al router. Otras 112 comprobaron la edición manual autorizada, permisos, colisiones, contraseña omitida, identidad estable al reimportar, intención cifrada, recuperación de respuesta perdida y ausencia de cambios ajenos. Las mutaciones permitidas se limitaron a PATCH del secret seleccionado con name/password.
 
-Pruebas realizadas en Apache/PHP 8.2/MariaDB 10.4 Linux y Chromium, usando servidores de protocolo controlados. No se accedió al Windows, MikroTik físico ni contraseñas reales del operador.
+La actualización real desde el ZIP 2.2.2 publicado pasó 59 comprobaciones: migración009, capacidad de edición manual, PEN, datos de empresa, configuración privada idéntica y registros financieros USD intactos. La actualización del esquema no envió cambios al router.
+
+Pruebas en Apache/PHP 8.2/MariaDB 10.4 Linux y Chromium con servidores de protocolo controlados. No se accedió al Windows, MikroTik físico, clientes ni contraseñas reales del operador.
 
 SHA-256:
 
 ```
-26d69f19c98faab30e03cffe8c04487677598413b38a3db5b20031a2d002bcb9
+079117a77a6163e9f1302c281ce971ff82a3e484668f500197eac25a5ca6055f
 ```
 
-En PowerShell: `Get-FileHash .\nexoisp-xampp-v2.2.2-pppoe.zip -Algorithm SHA256`.
+En PowerShell: `Get-FileHash .\nexoisp-xampp-v2.3.0-editar-pppoe.zip -Algorithm SHA256`.
 
-Lee **USUARIO-PPPOE.txt**, **GUIA-ACTUALIZAR.txt**, **LEEME.txt** y **PRUEBAS.txt** dentro del ZIP. El paquete no contiene configuración instalada, datos reales, contraseñas ni claves privadas.
+Lee **USUARIO-PPPOE.txt**, **GUIA-ACTUALIZAR.txt**, **LEEME.txt** y **PRUEBAS.txt** dentro del ZIP. No contiene configuración instalada, datos reales, contraseñas ni claves privadas.
 
 ## Versiones anteriores
 
-Se conservan [v2.2.1 soles](nexoisp-xampp-v2.2.1-soles.zip), [v2.2](nexoisp-xampp-v2.2-lectura.zip), [v2.1.1](nexoisp-xampp-v2.1.1-lectura.zip), [v2.1](nexoisp-xampp-v2.1-lectura.zip), [v2](nexoisp-xampp-v2.zip) y [v1](nexoisp-xampp.zip). Utiliza **v2.2.2** para los campos PPPoE en Editar cliente. Las distribuciones v1/v2 anteriores al modo lectura permitían operaciones de configuración.
+Se conservan [v2.2.2 consulta PPPoE](nexoisp-xampp-v2.2.2-pppoe.zip), [v2.2.1 soles](nexoisp-xampp-v2.2.1-soles.zip), [v2.2](nexoisp-xampp-v2.2-lectura.zip), [v2.1.1](nexoisp-xampp-v2.1.1-lectura.zip), [v2.1](nexoisp-xampp-v2.1-lectura.zip), [v2](nexoisp-xampp-v2.zip) y [v1](nexoisp-xampp.zip). Utiliza **v2.3.0** para editar las credenciales PPPoE. Las versiones v1/v2 anteriores al modo lectura permitían otras operaciones de configuración.
 
 NexoISP es una implementación propia, sin código privado ni identidad gráfica de WispHub.

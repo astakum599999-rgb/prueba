@@ -1,64 +1,75 @@
-# NexoISP 2.1.1 para XAMPP — corrección de importación PPP
+# NexoISP 2.2 para XAMPP — perfiles PPP, nombres y demostración
 
-[**⬇ Descargar ZIP corregido v2.1.1 — SOLO LECTURA**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/nexoisp-xampp-v2.1.1-lectura.zip)
+[**⬇ Descargar ZIP completo v2.2 — SOLO LECTURA**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/nexoisp-xampp-v2.2-lectura.zip)
 
-[Checksum SHA-256](nexoisp-xampp-v2.1.1-lectura.sha256)
+[**⬇ Descargar demostración independiente**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/demostracion-nexoisp.html) · [Checksum del ZIP](nexoisp-xampp-v2.2-lectura.sha256)
 
-Esta corrección resuelve casos donde el importador rechazaba textos PPP legítimos con el mensaje **«El router devolvió texto PPP inválido; no se importó ningún registro»**, por ejemplo comentarios o nombres recibidos mediante Socket con bytes heredados, acentos o controles no imprimibles.
+## Qué cambia
 
-El UTF-8 válido se conserva. Para bytes no UTF-8 se utiliza una interpretación Windows-1252 al mostrarlos, sin requerir iconv ni mbstring; los controles se representan visiblemente y los comentarios mantienen tabulaciones y saltos de línea. Los bytes originales del usuario siguen siendo su identidad exacta: no se cambia el usuario del router ni se fusionan identidades de distinto contenido.
+- **Clientes:** el nombre se toma del comentario del secret. Al repetir la importación, el comentario no vacío reemplaza el nombre local anterior, conservando usuario PPP, código, identidad, contactos y demás datos. Si el comentario está vacío se conserva el nombre existente; un cliente nuevo usa el usuario como alternativa.
+- **Planes de Internet:** nuevo botón **Importar perfiles de MikroTik**. Copia todos los perfiles PPP a observaciones locales; los que tienen velocidad base representable generan planes locales inactivos, pendientes de tarifa. RX corresponde a subida del cliente y TX a bajada.
+- Los perfiles sin `rate-limit`, ilimitados, no representables o reservados para corte se muestran para revisión; no se inventa velocidad ni se convierte el perfil de suspensión en un plan comercial.
+- **Demostración:** factura, suspensión, promesa y pagos con datos ficticios en memoria. No utiliza API, cuenta, almacenamiento real ni conexión al MikroTik.
 
-## Aplicar la corrección en una instalación existente
+RouterOS no contiene el precio mensual ni la moneda comercial. Los planes importados muestran **Precio pendiente** hasta que un administrador complete esos datos; ese estado bloquea activación y facturación. El valor interno inicial cero no significa tarifa gratuita. Un precio cero sólo queda configurado si se establece explícitamente como tal.
 
-1. Guarda una copia privada de `storage\config.php` y tu respaldo habitual de la base.
-2. **Cierra el worker con Ctrl+C y detén Apache** antes de copiar los archivos.
-3. Extrae el ZIP nuevo y copia la carpeta `nexoisp` sobre `C:\xampp\htdocs\nexoisp`, **conservando exactamente tu `storage\config.php`** y los archivos privados existentes.
-4. Inicia Apache/MySQL y abre **http://localhost/nexoisp/**.
-5. Entra en **Clientes → Importar secrets de MikroTik**, selecciona el router y pulsa **Leer e importar clientes**.
+## Actualizar desde el ZIP anterior
 
-**Si ya aplicaste `006_secret_import`, no hay otra migración.** Los seis archivos SQL conservan sus bytes y checksums. Esta corrección no reinstala la base ni restablece usuarios o credenciales.
+1. Respalda la base y guarda una copia privada de `storage\config.php`.
+2. **Cierra el worker con Ctrl+C y detén Apache** antes de reemplazar archivos.
+3. Extrae `nexoisp` sobre `C:\xampp\htdocs\nexoisp`, conservando exactamente tu `storage\config.php` y los archivos privados locales.
+4. Inicia Apache/MySQL, abre **http://localhost/nexoisp/** y aplica **007_profile_import** con tu administrador existente.
+5. En **Clientes → Importar secrets de MikroTik**, repite la lectura para actualizar los nombres desde los comentarios.
+6. En **Planes de Internet → Importar perfiles de MikroTik**, elige un router o todos. Revisa las observaciones y completa las tarifas locales cuando corresponda.
 
-Si vienes de una versión más antigua, sigue también **GUIA-ACTUALIZAR.txt** para las migraciones que te falten. Un proceso del worker anterior que siga abierto conserva su código hasta cerrarlo.
+Los SQL 001 a 006 conservan sus bytes y checksums. No se reinstala la base ni se restablecen usuarios o credenciales. Si tienes una versión anterior, el actualizador también muestra las migraciones intermedias necesarias.
 
-## Modo de red solo lectura
+## Probar la demostración
 
-La importación consulta `/ppp/secret`, incluidos los deshabilitados y otras modalidades PPP, y guarda una copia local en Clientes. No copia contraseñas PPP ni crea servicios gestionados, planes, facturas o tareas de aprovisionamiento al importar. Repetir la misma combinación de router y usuario no duplica clientes. Los ausentes conservan su historial.
+Después de instalar el ZIP abre **http://localhost/nexoisp/demo/** o usa el enlace **Ver demostración** del panel. También puedes descargar el HTML independiente del enlace superior y abrirlo en tu navegador; contiene todo su código y estilos.
 
-Los cambios de configuración, cortes y reconexiones permanecen bloqueados en API, controlador y transportes. El worker sólo procesa consultas permitidas, conserva pendientes los trabajos mutantes antiguos y no agenda facturación automática ni autocorte en lectura. No hay un botón para activar escrituras.
+Ejercicio de ejemplo:
 
-Para importar basta un usuario RouterOS con `read` y `api` (Socket) o `read` y `rest-api` (REST v7). `test` sólo es necesario para ping. La importación no necesita `write` ni `sensitive`.
+1. Pulsa **Crear factura**: importe 100, saldo 100.
+2. **Avanzar al fin de gracia → Revisar vencimientos → Procesar tarea simulada**: corte por deuda en la simulación.
+3. **Registrar promesa → Procesar tarea simulada**: el compromiso cubre la deuda hasta la fecha indicada; no registra dinero ni reduce el saldo.
+4. Registra un pago de **40**: saldo **60**. Completa los otros **60** con otra referencia para liquidar la factura.
+5. Prueba **Suspender manualmente**: un pago o promesa no cancela un corte manual. También puedes agregar otra factura vencida para ver cómo mantiene la deuda.
 
-La lista muestra usuario, router, perfil, dirección configurada y habilitación observada. **Habilitado no significa conectado.** Las IP vacías o nombres de pool se conservan sin inventar direcciones de sesión. La lectura admite hasta 20 000 entradas por router dentro de los límites del transporte; una respuesta inválida no se guarda parcialmente. Las cuentas RADIUS externas y usuarios exclusivos de Hotspot no forman parte de `/ppp/secret`.
+Los estados solicitado/aplicado y la tarea simulada muestran que una operación encolada requiere confirmación. El reloj es virtual: no modifica la hora de Windows ni del router. **Reiniciar demostración** borra únicamente esos datos ficticios.
+
+## Tu red sigue en solo lectura
+
+Las importaciones sólo consultan `/ppp/secret` y `/ppp/profile`; no copian contraseñas PPP ni crean servicios, facturas o tareas de configuración. No enlazan perfiles y clientes mediante nombres ambiguos ni provisionan servicios automáticamente.
+
+Los cambios de configuración, suspensiones y reconexiones reales permanecen bloqueados en API, controlador y transportes. El worker conserva pendientes los trabajos mutantes antiguos y no agenda facturación automática ni autocorte en este modo. No hay un botón para habilitar escrituras.
+
+Una factura real necesita un servicio administrativo asociado y una tarifa revisada. Importar clientes/perfiles no crea ese servicio ni habilita el aprovisionamiento. Usa la demo para aprender los flujos durante la etapa de lectura.
 
 ## Instalación nueva
 
-Extrae `nexoisp` en `C:\xampp\htdocs`, inicia Apache/MySQL y abre **http://localhost/nexoisp/**. Completa el instalador con tus datos y un administrador propio. Registra el acceso API/REST de tu router y ejecuta la importación desde Clientes.
+Extrae `nexoisp` en `C:\xampp\htdocs`, inicia Apache y MySQL y abre **http://localhost/nexoisp/**. Completa el instalador con tus datos y un administrador propio. Requiere PHP 8.2 y MariaDB/MySQL. Incluye frontend compilado y fuente; no requiere Node.js, Docker, Redis ni Composer para ejecutarse.
 
-El paquete incluye PHP, SQL, frontend compilado y código fuente. Utiliza PHP 8.2 y MariaDB/MySQL; no requiere Node.js, Docker, Redis ni Composer para ejecutarse.
+## Validación
 
-## Verificación de la corrección
+486 comprobaciones PHP, 23 archivos PHP sin errores de sintaxis, 108 comprobaciones API/navegador de secrets y 65 de perfiles/planes. Se verificaron tarifas pendientes, bloqueo de facturas de importe cero desconocido, idempotencia, identidad por router, nombres desde comentarios y cero solicitudes mutantes RouterOS durante las suites de lectura.
 
-- **351 comprobaciones PHP** y sintaxis de 22 archivos de aplicación sin errores.
-- **26 comprobaciones Socket TCP** con respuestas fragmentadas: el fallo se reprodujo antes del fix y pasa después; sólo `/login` y `/ppp/secret/print`, sin comandos de configuración.
-- **108 comprobaciones API/Chromium** con 132 secrets por router, paginación, comentarios con acentos y controles, consulta/búsqueda de identidades heredadas, errores de campo/fila sin valores privados e idempotencia.
-- MariaDB con identidades CP1252 y NUL persistidas exactamente en VARBINARY, sin colapsar usuarios de igual presentación; DTO JSON válido y hashes anteriores estables para UTF-8 imprimible.
-- Actualización desde el ZIP v2.1 publicado: el error se reproduce antes de reemplazar archivos y la misma respuesta se importa después. Configuración y sesión se conservan, sin migración nueva.
-- **Cero solicitudes mutantes de red** en las pruebas de lectura y actualización.
+La demo pasó 41 comprobaciones Chromium sobre Apache real sin llamadas API ni recursos externos. La actualización desde v2 preservó configuración byte por byte, facturas, pagos, sesiones, claves y acceso a credenciales cifradas. También pasó la regresión de 176 comprobaciones API base y 200 ampliadas en un laboratorio explícitamente autorizado; esa configuración de prueba no se incluye en el ZIP.
 
-Se probaron Apache/PHP 8.2/MariaDB 10.4 en Linux y servidores de protocolo controlados. No se accedió al Windows ni al MikroTik real del operador ni se declara una prueba sobre un router físico. Una respuesta REST estructuralmente inválida sigue siendo rechazada por el transporte; los errores residuales del importador indican campo y fila sin mostrar su contenido.
+Las pruebas se ejecutaron con Apache/PHP 8.2/MariaDB 10.4 en Linux y servidores de protocolo controlados, sin routers físicos ni acceso a datos del operador. La velocidad importada es la BASE del perfil: burst y prioridad permanecen como texto observado, no una configuración QoS aplicada.
 
-SHA-256 del ZIP:
+SHA-256 de `nexoisp-xampp-v2.2-lectura.zip`:
 
 ```
-5efa7abbfd91bbac00b9ffa8fb99db6f51209edb1d3adae14875cdaf4029b0fa
+0fcb496727d4239f877e06e711e047ec039da1b83c340bf52b56b1ee9fa128de
 ```
 
-En PowerShell: `Get-FileHash .\nexoisp-xampp-v2.1.1-lectura.zip -Algorithm SHA256`.
+En PowerShell: `Get-FileHash .\nexoisp-xampp-v2.2-lectura.zip -Algorithm SHA256`.
 
-Consulta **CORRECCION-IMPORTACION.txt**, **IMPORTAR-SECRETS.txt**, **LEEME.txt**, **GUIA-ACTUALIZAR.txt**, **GUIA-MIKROTIK.txt** y **PRUEBAS.txt** dentro del ZIP. No contiene configuración instalada, contraseñas, datos de prueba ni claves privadas.
+Lee **LEEME.txt**, **GUIA-ACTUALIZAR.txt**, **IMPORTAR-SECRETS.txt**, **IMPORTAR-PERFILES.txt**, **DEMOSTRACION.txt** y **PRUEBAS.txt** dentro del ZIP. No contiene configuración instalada, contraseñas, datos de prueba ni claves privadas.
 
-## Versiones históricas
+## Historial
 
-Se conservan [v2.1](nexoisp-xampp-v2.1-lectura.zip), [v2](nexoisp-xampp-v2.zip) y [v1](nexoisp-xampp.zip) para referencia. Utiliza **v2.1.1** para la corrección de texto. Las versiones v1/v2 anteriores al modo de lectura permitían operaciones de configuración.
+Se conservan [v2.1.1](nexoisp-xampp-v2.1.1-lectura.zip), [v2.1](nexoisp-xampp-v2.1-lectura.zip), [v2](nexoisp-xampp-v2.zip) y [v1](nexoisp-xampp.zip). Usa **v2.2** para perfiles y nombres desde comentarios. Las distribuciones v1/v2 anteriores al modo de lectura permitían operaciones de configuración.
 
 NexoISP es una implementación propia, sin código privado ni identidad gráfica de WispHub.

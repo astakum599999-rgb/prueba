@@ -1,72 +1,60 @@
-# NexoISP 2.3.3 para XAMPP — IP y acceso al router del cliente
+# GIGARED ISP 2.4.0 para XAMPP
 
-[**⬇ Descargar ZIP v2.3.3 con columna IP**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/nexoisp-xampp-v2.3.3-ip-clientes.zip)
+[**Descargar ZIP completo 2.4.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v2.4.0.zip)
 
-[Checksum SHA-256](nexoisp-xampp-v2.3.3-ip-clientes.sha256) · [Demostración independiente](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/demostracion-nexoisp.html)
+[Checksum SHA-256](gigared-isp-xampp-v2.4.0.sha256)
 
-## Clientes: IP y acceso web
+## Cambios incluidos
 
-La columna **Contacto** se sustituye por **IP**. Cada cliente muestra las direcciones válidas registradas en sus servicios actuales y en la dirección remota de sus secrets presentes. El correo y teléfono permanecen en **Editar** y **Ver detalle**.
+- Marca visible **GIGARED ISP** y tabla/recuadros de Clientes más compactos.
+- Acceso por IP sin iframe: el recuadro permite elegir HTTP/HTTPS y puerto; **Abrir router** abre una pestaña independiente. Evita el bloqueo al incrustar páginas del equipo. El navegador necesita conexión a la IP y el equipo debe tener disponible su interfaz web.
+- Lectura automática de secrets con intervalo normal de **30 segundos** para routers que ya hayas importado. El comentario no vacío actualiza el nombre; se refrescan observaciones de perfil/IP y se conservan notas y datos administrativos locales.
+- La sincronización funciona con un panel ADMIN/TECHNICIAN visible. Para continuar con el navegador cerrado o minimizado, ejecuta **INICIAR-WORKER.bat** y conserva abierta su ventana.
 
-**Pulsa una IP para abrir el recuadro de acceso web al equipo del cliente.** Puedes elegir **HTTP/HTTPS** y el **puerto web**. La dirección se abre directamente desde tu navegador; inicia sesión con las credenciales propias de ese equipo.
+Es consulta periódica, no push instantáneo. Los routers se procesan por turnos, sin solaparse entre pestañas/worker. Ante fallos se conservan los últimos datos y el reintento aumenta hasta cinco minutos. El estado muestra la última lectura correcta de cada router. Los cambios manuales pendientes de comprobar aplazan la lectura.
 
-El recuadro incluye **Abrir en otra pestaña**. Úsalo cuando el router o navegador no permita mostrar la interfaz embebida. Tu PC necesita conectividad a esa IP, directamente o mediante VPN, y el servicio web del dispositivo debe estar disponible. No se omiten certificados ni políticas de seguridad.
+Los perfiles y planes mantienen su importación independiente. La IP dinámica sigue consultándose mediante **Consultar IP actual**; no se inventan IPs de sesión a partir de pools. Un usuario renombrado directamente en RouterOS es otra identidad: para conservar su vínculo utiliza la edición PPPoE del panel.
 
-Se admiten IPv4 e IPv6. Los pools, URLs, direcciones vacías/no utilizables y observaciones ausentes no generan enlaces. Una misma IP/router no se duplica al coincidir servicio y secret; distintos routers conservan su contexto.
+## Actualizar la instalación
 
-## IP dinámica PPPoE
-
-Si el secret usa un pool o no fija una IP, **ADMIN/TECHNICIAN** puede pulsar **Consultar IP actual**. Esa acción consulta `/ppp/active` únicamente para las cuentas de ese cliente. No hay lecturas implícitas del MikroTik al abrir o actualizar la tabla.
-
-El resultado muestra la IP observada durante esa consulta; no se guarda como asignación estática ni confirma que su interfaz web esté disponible. Si no hay sesión o la lectura falla, se informa sin inventar una IP. Repite la consulta cuando necesites una observación nueva.
-
-El acceso web no usa un proxy PHP, no incluye contraseñas en URLs ni reutiliza la credencial API del router principal. Estas funciones no modifican configuración o sesiones en MikroTik.
-
-## Actualizar tu XAMPP
-
-**Desde2.3.2 no hay migraciones nuevas.**
-
-1. Respalda la base y guarda una copia privada de `storage\config.php`.
+1. Respalda la base de datos y guarda una copia privada de **storage\config.php**.
 2. Cierra el worker y detén Apache.
-3. Copia la carpeta `nexoisp` del ZIP sobre `C:\xampp\htdocs\nexoisp`, conservando exactamente **`storage\config.php`** y los archivos privados locales.
-4. Inicia Apache/MySQL y abre **http://localhost/nexoisp/**.
-5. Vuelve a iniciar sesión y pulsa **Ctrl+F5**.
-6. Abre **Clientes** y pulsa la IP correspondiente. Para IP dinámica usa **Consultar IP actual**.
+3. Extrae el ZIP y copia el contenido de **nexoisp** sobre **C:\xampp\htdocs\nexoisp**, conservando exactamente **storage\config.php** y tus archivos privados locales.
+4. Inicia Apache/MySQL y abre **http://localhost/nexoisp/actualizar.php** como ADMIN. Aplica las pendientes hasta **012_secret_auto_sync**.
+5. Entra al panel y pulsa **Ctrl+F5**. Los routers previamente importados se incorporan a la lectura automática; para uno nuevo importa sus secrets una vez.
+6. Ejecuta **INICIAR-WORKER.bat** para mantener la sincronización aunque cierres el navegador.
 
-Si vienes de una versión anterior con esquema pendiente, aplícala en **http://localhost/nexoisp/actualizar.php** como ADMIN hasta `011_client_notes`. Los SQL001–011 conservan sus bytes y checksums publicados. No se reinstala la base ni se cambian claves.
-
-## Funciones conservadas
-
-Notas continúa debajo de la fila GPS y es interna de NexoISP. El nombre completo se sincroniza con Comment del secret importado; usuario/contraseña PPPoE conservan su botón específico y sus permisos. PEN/S/ e importes históricos con su moneda original se mantienen.
-
-Cortes, reconexiones, aprovisionamiento, firewall y trabajos mutantes antiguos siguen bloqueados. No cambies `network_read_only` para usar las IP o el acceso web. La demo de facturas/promesas/pagos está en **http://localhost/nexoisp/demo/** y sigue aislada.
+La carpeta y URL **nexoisp** se conservan para actualizar tu instalación existente. La migración012 añade únicamente el calendario local y no contacta al router. Los SQL001–011 mantienen sus bytes y checksums originales. No se reinstala la base ni se cambian las claves.
 
 ## Instalación nueva
 
-Extrae `nexoisp` en `C:\xampp\htdocs`, inicia Apache/MySQL y abre **http://localhost/nexoisp/**. Completa el instalador y crea tu administrador. Requiere PHP8.2 y MariaDB/MySQL. Incluye interfaz compilada y fuente; para utilizar el ZIP no necesitas Node.js, Docker, Redis ni Composer.
+Extrae **nexoisp** en **C:\xampp\htdocs**, inicia Apache/MySQL y abre **http://localhost/nexoisp/**. Completa el instalador con tus datos y crea tu administrador. Requiere PHP8.2 y MariaDB10.4+/MySQL8+. Incluye PHP, SQL, interfaz compilada y fuente completa; no necesitas Node.js, Docker, Redis ni Composer para usar el ZIP.
+
+## Funciones conservadas
+
+Notas sigue debajo de la fila GPS y es interna. El nombre completo se sincroniza manualmente con Comment del secret importado cuando ADMIN guarda el cliente; las credenciales PPPoE tienen su botón y verificación específicos. La lectura automática no solicita contraseñas masivamente. Se conserva PEN/S/ y la moneda de todas las operaciones históricas.
+
+Cortes, reconexiones, aprovisionamiento, firewall y trabajos mutantes antiguos continúan bloqueados. No cambies **network_read_only** para utilizar la sincronización automática. La demostración independiente de facturas, promesas y pagos sigue en **http://localhost/nexoisp/demo/**.
 
 ## Validación
 
-33 nuevas comprobaciones API/Chromium de IPs registradas, servicios/secrets, IPv6, datos inválidos, sesiones dinámicas, permisos y acceso web directo. El navegador cargó un dispositivo HTTP simulado dentro del iframe y comprobó HTTPS/puerto8443, IPv6 con corchetes, puerto inválido, URL sin credenciales y enlace independiente. La suite nueva no envió modificaciones de configuración RouterOS.
+- Compilación TypeScript/Vite correcta y29 archivos PHP sin errores de sintaxis;11 suites PHP aprobadas.
+- 623 comprobaciones API/Chromium: secrets108, perfiles65, consulta PPP90, edición manual PPP112, nombre134, notas23, acceso IP34 y sincronización automática57.
+- La suite automática verifica reservas30s, exclusión concurrente, errores/backoff, conservación de datos, permisos, worker, actualización del listado y borradores sin sobrescribir. Cero cambios de configuración RouterOS en las funciones automáticas y de acceso IP.
+- Actualización desde el ZIP2.3.3 publicado:115 comprobaciones. Sólo SQL012 añadida; configuración privada byteidéntica, notas e identidades intactas y finanzas USD/PEN conservadas. Cero lecturas del router durante la migración y cero escrituras RouterOS.
 
-766 comprobaciones PHP de regresión aprobadas y sintaxis de28 archivos; TypeScript/Vite compilado. Se repitieron suites anteriores de API/Chromium: secrets108, perfiles65, consultaPPP90, ediciónPPP112, nombre134 y notas23.
-
-La actualización real desde el ZIP2.3.2 publicado pasó67 comprobaciones: sin migraciones, IP del servicio existente, notas previas, PEN, empresa, sesión, historial financiero USD y configuración privada idénticos. Cero modificaciones RouterOS durante esa actualización.
-
-Pruebas en Apache/PHP8.2/MariaDB10.4 Linux y Chromium con servidores de protocolo controlados. Los frames del dispositivo se interceptaron en el laboratorio. No se accedió al Windows, red real, clientes ni routers físicos del operador.
+Pruebas en Apache/PHP8.2/MariaDB10.4 Linux y Chromium, con servidores de protocolo controlados. No se accedió al Windows ni routers físicos del operador.
 
 SHA-256:
 
 ```
-57bb5db68bc07509875811941c4cefafcbf839fcb9ad6e954179b93eef72b380
+6a109fac4440acc3186806215e1e35e32628304c8d801d135d58d38029539c3d
 ```
 
-En PowerShell: `Get-FileHash .\nexoisp-xampp-v2.3.3-ip-clientes.zip -Algorithm SHA256`.
+En PowerShell: `Get-FileHash .\gigared-isp-xampp-v2.4.0.zip -Algorithm SHA256`.
 
-Lee **IP-CLIENTES.txt**, **GUIA-ACTUALIZAR.txt**, **LEEME.txt** y **PRUEBAS.txt** dentro del ZIP. No contiene instalación previa, datos reales, notas privadas, contraseñas ni claves.
+Lee **LEEME.txt**, **GUIA-ACTUALIZAR.txt**, **ACTUALIZACION-AUTOMATICA.txt**, **IP-CLIENTES.txt** y **PRUEBAS.txt** incluidos. El ZIP no contiene instalación previa, datos reales, contraseñas ni claves.
 
 ## Versiones anteriores
 
-Se conservan [v2.3.2 notas](nexoisp-xampp-v2.3.2-notas-clientes.zip), [v2.3.1 nombre/comentario](nexoisp-xampp-v2.3.1-nombre-mikrotik.zip), [v2.3.0 edición PPPoE](nexoisp-xampp-v2.3.0-editar-pppoe.zip), [v2.2.2 consulta PPPoE](nexoisp-xampp-v2.2.2-pppoe.zip), [v2.2.1 soles](nexoisp-xampp-v2.2.1-soles.zip), [v2.2](nexoisp-xampp-v2.2-lectura.zip), [v2.1.1](nexoisp-xampp-v2.1.1-lectura.zip), [v2.1](nexoisp-xampp-v2.1-lectura.zip), [v2](nexoisp-xampp-v2.zip) y [v1](nexoisp-xampp.zip). Usa **v2.3.3** para la columna IP y el recuadro de acceso. Las versiones v1/v2 anteriores al modo lectura permitían otras operaciones de configuración.
-
-NexoISP es una implementación propia, sin código privado ni identidad gráfica de WispHub.
+Se conservan [2.3.3 IP](nexoisp-xampp-v2.3.3-ip-clientes.zip), [2.3.2 notas](nexoisp-xampp-v2.3.2-notas-clientes.zip), [2.3.1 nombre](nexoisp-xampp-v2.3.1-nombre-mikrotik.zip), [2.3.0 edición PPPoE](nexoisp-xampp-v2.3.0-editar-pppoe.zip), [2.2.2 consulta PPPoE](nexoisp-xampp-v2.2.2-pppoe.zip), [2.2.1 soles](nexoisp-xampp-v2.2.1-soles.zip), [2.2](nexoisp-xampp-v2.2-lectura.zip), [2.1.1](nexoisp-xampp-v2.1.1-lectura.zip), [2.1](nexoisp-xampp-v2.1-lectura.zip), [2](nexoisp-xampp-v2.zip) y [1](nexoisp-xampp.zip). Usa **2.4.0** para los cambios actuales. Las versiones1/2 anteriores al modo lectura permitían otras operaciones de configuración.

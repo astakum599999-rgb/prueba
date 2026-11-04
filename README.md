@@ -1,3 +1,33 @@
+# GIGARED ISP 3.8.1 para XAMPP Windows
+
+[**DESCARGAR ZIP COMPLETO 3.8.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.8.1-activar-manual.zip)
+
+Después de **Suspender manual**, la fila del cliente muestra el icono verde
+**Activar manual**. Al confirmar habilita el mismo secret PPPoE, verifica la
+respuesta y marca al cliente y servicio como Activos, conservando su perfil,
+IP, usuario y contraseña. ADMIN y TÉCNICO pueden hacerlo. El equipo del cliente
+podrá volver a conectarse con sus credenciales habituales. Las sesiones que ya
+se hayan reconectado se mantienen abiertas.
+
+Funciona también con suspensiones manuales realizadas en3.8.0. Una respuesta
+perdida se verifica sin reenviar escrituras, con continuación explícita si falta
+aplicar algo. No cambia network_read_only ni habilita cortes automáticos,
+escrituras generales, cambios de plan o anulación de facturas.
+
+Para actualizar: respalda carpeta/base, detén Apache/worker y copia `nexoisp`
+sobre `C:\xampp\htdocs\nexoisp`, conservando exactamente `storage/config.php`.
+Inicia Apache/MySQL; como ADMIN abre `/nexoisp/actualizar.php` y aplica
+**021_client_ppp_reactivation** y las anteriores pendientes. Reinicia el worker
+y pulsa **Ctrl+F5**. No reinstales ni borres la base. Lee `ACTIVAR-MANUAL.txt`.
+
+Paquete completo: **503archivos**. Reactivación:92pruebas API y23de navegador;
+actualización desde3.8.0:192pruebas. Simuladores REST/Socket y laboratorio aislado;
+no se utilizaron equipos ni credenciales de tu instalación.
+
+SHA-256: `a49914d58a2589e7fb2cf79fb6d7ccad1ed373632ee605751d47df18148436f1`
+
+## Descargas e instrucciones anteriores
+
 # GIGARED ISP 3.8.0 para XAMPP Windows
 
 [**DESCARGAR ZIP COMPLETO 3.8.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.8.0-acciones-clientes.zip)

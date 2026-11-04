@@ -1,3 +1,52 @@
+# GIGARED ISP 3.5.0 para XAMPP — Clientes Online
+
+[**Descargar ZIP completo 3.5.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.5.0-clientes-online.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.5.0-clientes-online.sha256)
+
+La primera tarjeta del dashboard se llama **Clientes Online** y muestra el
+número de **sesiones PPPoE activas de MikroTik**, equivalente a PPP/Active
+Connections, con un **punto verde brillante** cuando el total es reciente.
+Se actualiza cada15segundos mientras el dashboard está visible.
+
+Cuenta todas las sesiones `pppoe`, incluidas cuentas no importadas y conexiones
+simultáneas del mismo usuario, sumando los routers reales REST/Socket. No usa
+el estado administrativo Activo del cliente y no cuenta personas únicas.
+Otros tipos PPP y routers simulados no se suman.
+
+Una lectura real de cero es válida. Si falta un router, hay error o el dato
+caduca a30segundos, muestra **— y punto gris**; no presenta una falla como cero
+ni conserva verde un número antiguo. Comparte la consulta de sesiones con las
+IPs de Clientes y no modifica la configuración de MikroTik.
+
+## Actualizar
+
+1. Respalda base/carpeta. Detén el worker y Apache.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando EXACTAMENTE
+   **storage\config.php** y su clave privada original.
+3. Inicia Apache/MySQL. Abre **/nexoisp/actualizar.php** como ADMIN y aplica
+   **018_pppoe_online**, además de las anteriores pendientes.
+4. Pulsa **Ctrl+F5** y abre el dashboard. La primera lectura puede tardar unos
+   segundos. Reinicia el worker nuevo si lo usas para otras funciones automáticas.
+
+Consulta **CLIENTES-ONLINE.txt**. SQL001–017 mantiene sus bytes y datos;018 sólo
+crea una tabla para el conteo y su fecha, sin identidades ni credenciales ajenas.
+La migración no consulta equipos. Se conservan facturas, pagos, calendario por
+instalación, permisos y modo de red sólo lectura. No reinstales ni cambies
+checksums o la clave AES existente.
+
+## Verificación
+
+63 comprobaciones de lector/Socket,134 API/Chromium y180 de actualización real
+desde3.4.0 aprobadas. Totales completos, cero real, sesiones ajenas/duplicadas,
+privacidad, roles, caché compartida, seis routers, errores, caducidad y punto
+verde en temas claro/oscuro. Config/SQL/datos exactos y cero escrituras RouterOS
+o tareas de red/OLT. Compilación y regresiones de sólo lectura aprobadas.
+Pruebas de laboratorio; no se accedió a la instalación Windows ni a equipos
+físicos del operador. Las descargas anteriores se conservan a continuación.
+
+---
+
 # GIGARED ISP 3.4.0 para XAMPP — Facturación desde instalación
 
 [**Descargar ZIP completo 3.4.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.4.0-facturacion-instalacion.zip)

@@ -1,3 +1,59 @@
+# GIGARED ISP 3.4.0 para XAMPP — Facturación desde instalación
+
+[**Descargar ZIP completo 3.4.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.4.0-facturacion-instalacion.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.4.0-facturacion-instalacion.sha256)
+
+El formulario deja **Inicio de facturación** como fecha de instalación y
+**Días de gracia**, además de Cliente y Plan. Se eliminan **Día de facturación**
+y **Días para pagar**: el calendario se calcula automáticamente.
+
+| Instalación | Emisión de primera factura | Primer pago |
+| --- | --- | --- |
+| 01/10/2026 | 30/10/2026 | 01/11/2026 |
+
+Se cobra un mes después, en el día original de instalación, y se factura dos
+días antes. Meses cortos usan su último día:31/01→28/02→31/03, con29/02 cuando
+corresponde. El período identifica el mes del vencimiento (2026-11 en el ejemplo).
+El calendario usa hora de Perú y conserva UTC para los instantes en la base.
+
+Con pago01/11 y3días de gracia, se puede pagar todo el día01 y los días02–04;
+el atraso comienza05/11 a00:00 de Perú. La gracia no cambia el siguiente pago.
+
+## Actualizar y usar
+
+1. Respalda base/carpeta. Detén el worker y Apache.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando EXACTAMENTE
+   **storage\config.php** y su clave privada original.
+3. Inicia Apache/MySQL. Desde3.3.0 **no hay SQLnuevo**. Desde versiones anteriores
+   aplica las pendientes hasta **017_local_billing_start** en actualizar.php.
+4. Pulsa **Ctrl+F5**. Guarda la instalación y gracia en el servicio local.
+5. Ejecuta **INICIAR-WORKER.bat** para emitir automáticamente con el navegador
+   cerrado. Mantén su ventana abierta y el equipo encendido. El panel autenticado
+   también puede procesarlas mientras esté abierto.
+
+Consulta **FACTURACION-INSTALACION.txt**. Se recuperan períodos pendientes sin
+duplicar facturas; los anulados/eliminados siguen reservados. Las facturas
+emitidas no se recalculan. Las fechas explícitas de3.3 se interpretan ahora
+como instalación; los servicios sin fecha conservan su calendario anterior
+hasta asignar una. No se utiliza el prorrateo del calendario anterior.
+
+SQL001–017 mantiene sus bytes. La emisión automática habilitada en lectura sólo
+crea facturas de asociaciones locales con instalación. Las tareas generales de
+facturación, autocorte, sincronización y configuración continúan bloqueadas.
+No se envían órdenes a MikroTik/OLT ni se cortan o reconectan clientes.
+
+## Verificación
+
+153 comprobaciones API/worker/Chromium,35 de calendario y157 de actualización
+real desde3.3.0 aprobadas. Hora peruana, emisión/pago/gracia, meses cortos,
+idempotencia/concurrencia, historial inmutable, scope LOCAL_ONLY estricto,
+SQL/config exactos y cero RouterOS I/O o trabajos OLT. Compilación y regresiones
+financieras/lectura aprobadas en laboratorio. No se accedió a la instalación
+Windows ni a equipos físicos del operador. Las descargas anteriores se conservan.
+
+---
+
 # GIGARED ISP 3.3.0 para XAMPP — Búsqueda e inicio de facturación
 
 [**Descargar ZIP completo 3.3.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.3.0-busqueda-inicio-facturacion.zip)

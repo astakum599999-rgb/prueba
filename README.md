@@ -1,3 +1,44 @@
+# GIGARED ISP3.7.1 para XAMPP — Credenciales PPPoE automáticas
+
+[**Descargar ZIP completo3.7.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.7.1-credenciales-automaticas.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.7.1-credenciales-automaticas.sha256)
+
+En **Nuevo cliente → PPPoE**, usuario y contraseña son opcionales. El servidor
+completa sólo los campos vacíos: genera un usuario disponible y una contraseña
+segura cuando corresponda, y conserva exactamente los valores escritos.
+Los reintentos y solicitudes repetidas usan la misma pareja de la reserva.
+
+El resultado muestra el usuario asignado. Un administrador puede consultar la
+clave desde **Editar cliente**, en las credenciales PPPoE. La contraseña se
+almacena cifrada y no se incluye en el resultado público. Hotspot conserva sus
+campos obligatorios y los clientes existentes mantienen sus credenciales.
+También se conserva la IP al alternar el tipo de conexión y el correo opcional
+puede quedar vacío al registrar desde el formulario.
+
+## Actualizar
+
+1. Respalda carpeta y base. Detén Apache y el worker o su tarea programada.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando EXACTAMENTE
+   **storage\config.php** y su clave AES original.
+3. Inicia Apache/MySQL, reinicia el worker y pulsa **Ctrl+F5**. Verifica **v3.7.1**.
+
+**Desde3.7.0 no hay migraciones nuevas.** Si vienes de una versión anterior,
+aplica las pendientes hasta019_client_provisioning como ADMIN en actualizar.php.
+SQL001–019 conserva sus bytes/checksums; no reinstales ni reemplaces AES.
+Lee **CREDENCIALES-AUTOMATICAS.txt** dentro del ZIP.
+
+## Verificación
+
+Compilación,11comprobaciones del generador,118de API específica,17del navegador
+final y93de regresión de alta aprobadas. Se verificó conservación en reintentos,
+creación REST/Socket y acceso explícito de administrador a la clave. Fixtures
+sin equipos del operador. ZIP con CRC/manifiesto SHA256, sin configuración privada.
+
+---
+
+## Historial de descargas
+
 # GIGARED ISP3.7.0 para XAMPP — Nuevo cliente con alta en MikroTik
 
 [**Descargar ZIP completo3.7.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.7.0-nuevo-cliente.zip)

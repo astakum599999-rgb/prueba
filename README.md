@@ -1,3 +1,31 @@
+# GIGARED ISP 3.0.5 para XAMPP — IP en nueva pestaña
+
+[**Descargar ZIP completo 3.0.5**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.5-ip-nueva-pestana.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.0.5-ip-nueva-pestana.sha256)
+
+Al pulsar la IP del cliente, su router/ONU abre **directamente en una pestaña
+nueva**. Clientes permanece abierto. Se retiran el recuadro y el botón intermedio.
+Las IPs automáticas, temas, tablas compactas y funciones anteriores se conservan.
+
+1. Respalda carpeta/base, cierra el worker y detén Apache.
+2. Extrae **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando exactamente
+   **storage\config.php** y sus claves privadas.
+3. Inicia Apache/MySQL y pulsa **Ctrl+F5**.
+4. En Clientes pulsa directamente la IP.
+
+El enlace inicial usa HTTP/puerto80. Si el equipo usa HTTPS u otro puerto,
+ajusta la barra de la pestaña nueva. La web debe ser alcanzable desde tu PC.
+
+Desde3.0.0–3.0.4 no hay nuevas migraciones. Desde versiones anteriores aplica
+las pendientes hasta014_fiber. Consulta IP-CLIENTES.txt dentro del ZIP.
+
+Compilación y Chromium aprobados: IPv4/IPv6, nueva pestaña con web ficticia que
+rechaza marcos, panel conservado, sin iframe/diálogo, opener aislado y móvil.
+SQL001–014 idéntico a3.0.4; no se accedió a equipos reales del operador.
+
+---
+
 # GIGARED ISP 3.0.4 para XAMPP — Acceso a routers y ONUs
 
 [**Descargar ZIP completo 3.0.4**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.4-acceso-equipos.zip)

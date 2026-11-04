@@ -1,3 +1,51 @@
+# GIGARED ISP 3.5.1 para XAMPP — Lectura cada segundo
+
+[**Descargar ZIP completo 3.5.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.5.1-lectura-un-segundo.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.5.1-lectura-un-segundo.sha256)
+
+**Clientes Online** y las **IP activas de Clientes** se consultan cada **1 segundo**
+mientras sus vistas están visibles. El intervalo se mide desde el inicio de la
+solicitud para evitar sumar otro segundo al tiempo de respuesta.
+
+Ambas vistas comparten una sola lectura por router. Varias pestañas y usuarios
+comparten la misma caché y reserva; no se consulta a MikroTik por cada cliente.
+Se mantiene una sola llamada en curso. Si el equipo tarda más, se espera su
+respuesta antes de continuar. La velocidad también depende del router y la red.
+
+Los datos observados caducan a los **5 segundos**, sin esperar treinta. Una
+respuesta retrasada no restaura números, IPs ni puntos verdes antiguos. Las
+consultas se pausan al ocultar la pestaña o salir y se reanudan al volver.
+Ante una falla de conexión, se espacian los intentos de router de 2 a 30 segundos;
+el panel sigue comprobando el estado cada segundo sin anunciar datos viejos.
+
+## Actualizar
+
+1. Respalda base y carpeta. Detén el worker y Apache.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando EXACTAMENTE
+   **storage\config.php** y su clave privada original.
+3. Inicia Apache/MySQL. Desde **3.5.0 no hay SQL nuevo**. Desde versiones
+   anteriores aplica las pendientes hasta **018_pppoe_online** en actualizar.php.
+4. Pulsa **Ctrl+F5**. Reinicia el worker nuevo si lo usas para otras automatizaciones.
+
+Consulta **LECTURA-UN-SEGUNDO.txt**. Las reservas antiguas de 15 segundos se
+adaptan automáticamente al consultar, sin migrar datos. SQL001–018, configuración
+privada, cuentas y finanzas se conservan. Sólo se realizan lecturas de RouterOS;
+no se envían cortes, reconexiones ni cambios de configuración.
+
+## Verificación
+
+71 controles API/Chromium y151 de actualización real desde3.5.0 aprobados.
+Se midió una cadencia de un segundo con dos paneles y retraso de respuesta,
+una sola consulta en curso, actualización real de ambos valores, caché compartida
+y caducidad de cinco segundos. SQL/config/datos exactos, backoff y permisos
+conservados; cero escrituras RouterOS ni trabajos de red/OLT. Compilación y
+regresiones de lector/Socket63, moneda30 y sólo lectura213 aprobadas.
+Pruebas de laboratorio, sin acceso a la instalación ni equipos del operador.
+Las descargas anteriores se conservan a continuación.
+
+---
+
 # GIGARED ISP 3.5.0 para XAMPP — Clientes Online
 
 [**Descargar ZIP completo 3.5.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.5.0-clientes-online.zip)

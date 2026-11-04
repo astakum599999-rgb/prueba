@@ -1,3 +1,67 @@
+# GIGARED ISP3.7.0 para XAMPP — Nuevo cliente con alta en MikroTik
+
+[**Descargar ZIP completo3.7.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.7.0-nuevo-cliente.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.7.0-nuevo-cliente.sha256)
+
+El botón **+ Nuevo cliente** incorpora un asistente de datos personales,
+Google Maps/GPS y servicio. Permite seleccionar router, plan activo, pool/subred,
+IP sugerida y credenciales. Registra cliente y servicio y crea/verifica la cuenta
+PPPoE, usuario Hotspot o Simple Queue por API REST o Socket de MikroTik.
+
+Valida IP/usuario duplicados y reservas simultáneas. Conserva una intención
+cifrada y un resultado pendiente si se pierde la conexión; **Verificar alta**
+sólo lee y **Reintentar este servicio** usa el mismo registro tras comprobar
+su ausencia. Los editores existentes pueden cambiar nombre/comentario y
+credenciales después de confirmar. Una activación pendiente protege su identidad.
+
+Se revisó el demo oficial de Mikrowisp indicado por el usuario y se adaptó su
+organización por pasos a GIGARED ISP y a los campos GPS/servicio solicitados.
+Se mantienen ambos temas y el diseño móvil. El alta está autorizada para
+ADMIN/TECHNICIAN; las restricciones de los demás cambios de red siguen vigentes.
+
+## Actualizar
+
+1. Respalda carpeta/base. Detén Apache y el worker o su tarea programada.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp**, conservando EXACTAMENTE
+   **storage\config.php** y su clave AES original.
+3. Inicia Apache/MySQL. Como ADMIN abre **/nexoisp/actualizar.php** y aplica
+   **019_client_provisioning** y las anteriores que estén pendientes.
+4. Reinicia el worker o tarea programada y pulsa **Ctrl+F5**. Comprueba **v3.7.0**.
+
+019añade **ClientProvisioning** y **ClientRegistrationSettings**, sin alterar
+SQL001–018 ni registros anteriores. No reinstales ni cambies checksums/AES.
+El ZIP incluye todo el código PHP/SQL, frontend fuente y frontend compilado.
+
+## Configurar y usar
+
+En **Ubicación GPS → Configurar Google Maps**, ADMIN puede guardar la clave
+pública de su proyecto y su ID de mapa. Requiere Maps JavaScript API,
+facturación de Google Cloud y restricciones de referente/API correctas.
+Google recibe sólo el origen del sitio, no la ruta del cliente. Los campos
+manuales de latitud/longitud están disponibles si el mapa no carga.
+
+El router debe tener API accesible y permisos de escritura para crear el recurso.
+PPPoE/Hotspot usan un perfil existente con nombre/velocidades coincidentes con
+el plan; Simple Queue aplica sus velocidades. Se consultan rangos y ocupación
+antes de guardar; no se cambia la configuración global del router.
+El alta directa funciona sin esperar al worker. Los módulos financieros y
+la sincronización1s conservan sus flujos. Consulta **NUEVO-CLIENTE.txt** e
+**INVESTIGACION-MIKROWISP.md** dentro del ZIP.
+
+## Validación
+
+93comprobaciones API/REST/Socket,22de navegador,42de recuperación/editores,
+169de actualización publicada3.6.0→3.7.0;57de IPv4/capacidad y las pruebas de
+lectura/edición PPPoE, política general y moneda aprobadas. Fixtures aislados,
+sin acceso a equipos del operador; el mapa se prueba por contrato del SDK,
+sin claves ni cargos reales de Google. CRC/manifiesto SHA256 verificados,
+sin configuración de instalación ni claves de prueba en el ZIP.
+
+---
+
+## Historial de descargas
+
 # GIGARED ISP 3.6.0 para XAMPP — Sincronización MikroTik cada segundo
 
 [**Descargar ZIP completo 3.6.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.6.0-sincronizacion-mikrotik.zip)

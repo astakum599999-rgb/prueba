@@ -1,3 +1,48 @@
+# GIGARED ISP 3.3.0 para XAMPP — Búsqueda e inicio de facturación
+
+[**Descargar ZIP completo 3.3.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.3.0-busqueda-inicio-facturacion.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.3.0-busqueda-inicio-facturacion.sha256)
+
+En **Nuevo servicio de facturación**, Cliente ahora busca al escribir al menos
+2 caracteres del nombre, código, documento o correo y presenta hasta10
+coincidencias. No descarga ni despliega todo el directorio al pulsar el campo.
+Los clientes retirados no aparecen; puedes seleccionar con clic o teclado.
+
+**Inicio de facturación** permite elegir día, mes y año. **Día de facturación**
+conserva el día mensual del1 al28. Plan, días para pagar y gracia mantienen su
+funcionamiento. La fecha inicial puede ser anterior al alta del servicio;
+una fecha futura impide emitir antes de que llegue. Las facturas emitidas y
+la fecha de alta original se conservan. No se envían cambios a MikroTik/OLT.
+
+## Actualizar
+
+1. Respalda base/carpeta. Detén el worker y Apache.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp**, conservando exactamente
+   **storage\config.php** con su clave original.
+3. Inicia Apache/MySQL. Entra como ADMIN a **/nexoisp/actualizar.php** y aplica
+   **017_local_billing_start**, junto con las anteriores pendientes.
+4. Pulsa **Ctrl+F5** y consulta **BUSQUEDA-FACTURACION.txt** dentro del ZIP.
+
+SQL001–016 conserva sus bytes. 017 sólo crea la tabla de fechas iniciales;
+no rellena registros antiguos ni altera su calendario. Al editar un servicio
+anterior, dejar la fecha inicial vacía conserva su comportamiento previo.
+Las fechas explícitas no reescriben facturas ni liberan períodos/cargos reservados.
+Los períodos previos al inicio no son facturables. No hay prorrateo automático.
+No reinstales ni cambies checksums o la clave AES. Se conserva el modo de red
+sólo lectura y las funciones anteriores, incluida la eliminación financiera.
+
+## Verificación
+
+182 comprobaciones API/Chromium y149 de actualización real desde3.2.0 aprobadas.
+Búsqueda acotada, teclado, fechas pasadas/futuras, legacy, prorrateo, historial,
+roles, SQL/config exactos y cero RouterOS I/O, tareas de red o trabajos OLT.
+Compilación, sintaxis y regresiones financieras/lectura aprobadas en laboratorio.
+No se accedió a la instalación Windows ni equipos físicos del operador.
+Las descargas anteriores se conservan a continuación.
+
+---
+
 # GIGARED ISP 3.2.0 para XAMPP — Eliminar facturas, pagos y servicios
 
 [**Descargar ZIP completo 3.2.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.2.0-eliminar-registros.zip)

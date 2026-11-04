@@ -1,3 +1,31 @@
+# GIGARED ISP 3.8.0 para XAMPP Windows
+
+[**DESCARGAR ZIP COMPLETO 3.8.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.8.0-acciones-clientes.zip)
+
+En **Clientes** aparecen los iconos **Suspender manual** y **Eliminar cliente**.
+La suspensión deshabilita su secret PPPoE y cierra todas sus sesiones PPPoE.
+La eliminación deshabilita/elimina su secret, cierra sus sesiones y retira el
+cliente local conservando facturas, pagos y notas. ADMIN elimina; ADMIN/TÉCNICO
+suspende. Cada acción presenta la cuenta y requiere confirmación. Las sesiones
+ajenas o de otros protocolos permanecen intactas. Las respuestas perdidas tienen
+verificación de lectura y continuación de la misma operación.
+
+Estas acciones son excepciones manuales específicas al modo de lectura. No
+habilitan escrituras generales, autocortes, cambios de perfil, firewall u ONUs.
+
+Para actualizar: respalda carpeta/base, detén Apache/worker y copia `nexoisp`
+sobre `C:\xampp\htdocs\nexoisp`, conservando exactamente `storage/config.php`.
+Inicia Apache/MySQL; como ADMIN abre `/nexoisp/actualizar.php` y aplica
+**020_client_ppp_actions** y las anteriores pendientes. Reinicia el worker y
+pulsa **Ctrl+F5**. No reinstales ni borres la base. Lee `ACCIONES-CLIENTES.txt`.
+
+Paquete completo: **501archivos**. Probado con simuladores REST/Socket y navegador;
+no se utilizaron equipos ni credenciales de tu instalación.
+
+SHA-256: `a678cc43093ed33a7128ebba77e6c168cdf5e9bbf13a4766cd54ab5fedf11c84`
+
+## Descargas e instrucciones anteriores
+
 # GIGARED ISP3.7.1 para XAMPP — Credenciales PPPoE automáticas
 
 [**Descargar ZIP completo3.7.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.7.1-credenciales-automaticas.zip)

@@ -1,3 +1,29 @@
+# GIGARED ISP 3.0.2 para XAMPP — Columna Origen MikroTik
+
+[**Descargar ZIP completo 3.0.2**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.2-origen-clientes.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.0.2-origen-clientes.sha256)
+
+En Clientes, la columna **Origen MikroTik** conserva usuario PPPoE, router y
+perfil. Oculta **Secret habilitado/deshabilitado** y la dirección remota.
+Presenta **IP estática**, **IP dinámica / pool** o **IP según perfil** cuando
+el secret no define la dirección. La columna **IP** y la ficha detallada
+conservan su información completa.
+
+1. Guarda respaldo, cierra el worker y detén Apache.
+2. Extrae **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando exactamente
+   **storage\config.php**.
+3. Inicia Apache/MySQL y pulsa **Ctrl+F5** en el navegador.
+
+Desde3.0.0/3.0.1 no hay SQL nuevo. Para versiones anteriores aplica las pendientes
+hasta014_fiber. Se incluye el arreglo de acceso por red local de3.0.1.
+
+Compilación TypeScript/Vite y revisión visual en Chromium aprobadas para cinco
+casos de asignación. SQL001–014 y comportamiento backend conservados. No se
+accedió a instalaciones ni equipos reales. Las descargas anteriores siguen aquí.
+
+---
+
 # GIGARED ISP 3.0.1 para XAMPP — Acceso por red local
 
 [**Descargar ZIP completo 3.0.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.1-red-local.zip)

@@ -1,3 +1,43 @@
+# GIGARED ISP 3.5.2 para XAMPP — Aviso de lecturas aclarado
+
+[**Descargar ZIP completo 3.5.2**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.5.2-aviso-de-lecturas.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.5.2-aviso-de-lecturas.sha256)
+
+En Clientes, el aviso principal ahora dice:
+**IP de clientes · actualización automática — Consulta cada 1 s**.
+
+Los **30 segundos** corresponden a la sincronización de las **cuentas PPPoE
+(secrets)**, que aparece dentro de su propio detalle. Ese intervalo se mantiene
+y se informa con su nombre. Las IP activas y Clientes Online conservan su
+lectura de un segundo de3.5.1, sin cambiar los temporizadores del backend.
+
+Los errores y pausas de sincronización se identifican como información de
+cuentas. El aviso de IP se muestra para los roles/vistas con esa lectura;
+Routers o vistas sin ese permiso muestran el intervalo real de cuentas.
+
+## Actualizar
+
+1. Respalda base y carpeta. Detén Apache y el worker.
+2. Copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp**, conservando EXACTAMENTE
+   **storage\config.php** y su clave privada original.
+3. Inicia Apache/MySQL y pulsa **Ctrl+F5**. Reinicia el worker si lo utilizas.
+4. Desde3.5.0 no hay SQLnuevo; desde versiones anteriores aplica las pendientes
+   hasta **018_pppoe_online** como ADMIN en actualizar.php.
+
+Consulta **AVISO-DE-LECTURAS.txt**. SQL001–018 y backend de3.5.1 conservados;
+sólo cambia la etiqueta de versión en PHP. No cambian datos, permisos ni red.
+
+## Verificación
+
+Compilación de producción,14 comprobaciones visuales en ambos temas y30 de
+moneda/capacidades aprobadas. Se compararon los PHP y SQL con el ZIP3.5.1;
+los lectores y temporizadores son idénticos. Se conserva su validación de
+cadencia/API/actualización. Este ajuste no necesitó consultar routers ni tocar
+la instalación del operador. Las descargas anteriores siguen disponibles.
+
+---
+
 # GIGARED ISP 3.5.1 para XAMPP — Lectura cada segundo
 
 [**Descargar ZIP completo 3.5.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.5.1-lectura-un-segundo.zip)

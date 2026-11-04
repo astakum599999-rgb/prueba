@@ -1,3 +1,52 @@
+# GIGARED ISP 3.1.0 para XAMPP — Facturación local
+
+[**Descargar ZIP completo 3.1.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.1.0-facturacion-local.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.1.0-facturacion-local.sha256)
+
+Permite vincular **cliente + plan + fechas de cobro** y emitir facturas manuales
+sin modificar el MikroTik. Se resuelve el aviso que impedía crear facturas cuando
+sólo había clientes y perfiles importados. ADMIN y BILLING pueden guardar y editar
+estas asociaciones; no se piden IP, router ni contraseña PPPoE.
+
+## Actualizar
+
+1. Respalda base/carpeta, cierra el worker y detén Apache.
+2. Extrae **nexoisp** sobre **C:\xampp\htdocs\nexoisp**, conservando exactamente
+   **storage\config.php** y su clave privada original.
+3. Inicia Apache/MySQL. Abre **/nexoisp/actualizar.php** como ADMIN y aplica
+   **015_local_billing**, además de las anteriores que tengas pendientes.
+4. Pulsa **Ctrl+F5** y consulta **FACTURACION-LOCAL.txt** dentro del ZIP.
+
+SQL001–014 conserva sus bytes/historial. La nueva migración permite campos de red
+vacíos en Service y añade el marcador LocalBillingService. Conserva los registros,
+índices, claves y reservas anteriores; no consulta ni configura equipos.
+
+## Usar
+
+1. En **Planes de Internet**, configura precio, moneda PEN y activación del plan.
+2. En **Servicios de Internet → Nuevo servicio de facturación**, selecciona cliente,
+   plan y calendario. También puedes usar **Asignar plan de facturación** en el
+   detalle del cliente. Guarda la asociación.
+3. En **Facturación**, crea la factura seleccionando ese servicio y el periodo.
+4. Registra pagos o promesas desde sus módulos habituales.
+
+Estas asociaciones nunca ordenan cortes, reconexiones ni sincronizaciones de red,
+aun si posteriormente cambia la configuración global de lectura. No se convierten
+en servicios MikroTik mediante su edición. Las facturas emitidas conservan importe
+y moneda. La emisión de esta guía es manual; no se habilita facturación masiva ni
+autocorte automático en modo lectura. Las ediciones PPPoE previamente autorizadas
+conservan sus botones y permisos y no forman parte de este flujo.
+
+## Verificación
+
+133 controles API/Chromium y121 de actualización desde3.0.5 aprobados. Se verificaron
+facturas/PEN/pagos/promesas, cola inalterada, guardias permanentes, configuración
+byteexacta y finanzas históricas PEN/USD. Pruebas aisladas: no se accedió al Windows,
+MikroTik ni OLT físicos del operador. Las descargas anteriores siguen disponibles.
+
+---
+
 # GIGARED ISP 3.0.5 para XAMPP — IP en nueva pestaña
 
 [**Descargar ZIP completo 3.0.5**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.5-ip-nueva-pestana.zip)

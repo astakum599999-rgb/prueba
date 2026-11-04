@@ -1,3 +1,54 @@
+# GIGARED ISP 3.2.0 para XAMPP — Eliminar facturas, pagos y servicios
+
+[**Descargar ZIP completo 3.2.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.2.0-eliminar-registros.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.2.0-eliminar-registros.sha256)
+
+ADMIN y BILLING disponen de **papelera con confirmación** en Facturación, Pagos
+ y Servicios de Internet para servicios de facturación local. También está
+ disponible en Ver detalle. Al eliminar un pago se recalcula el saldo pendiente;
+ los registros dejan de aparecer en listados, informes, CSV, portal y documentos,
+ y conservan un historial de eliminación con usuario y fecha.
+
+## Actualizar
+
+1. Respalda base/carpeta. Cierra el worker y detén Apache.
+2. Extrae **nexoisp** sobre **C:\xampp\htdocs\nexoisp**, conservando exactamente
+   **storage\config.php** y su clave original.
+3. Inicia Apache/MySQL. Entra como ADMIN a **/nexoisp/actualizar.php** y aplica
+   **016_financial_deletions**, además de las anteriores pendientes.
+4. Pulsa **Ctrl+F5** y consulta **ELIMINAR-REGISTROS.txt** dentro del ZIP.
+
+SQL001–015 mantiene sus bytes. La migración016 sólo crea la tabla de historial.
+No reinstales la base ni cambies checksums o la clave AES existente.
+
+## Antes de eliminar
+
+- **Pago:** revierte primero su ingreso de Caja si está vinculado. Su referencia
+  seguirá reservada y no podrá acreditarse otra vez por webhook o reporte.
+- **Factura:** elimina primero sus pagos y resuelve los reportes pendientes.
+  Se cancelan sus promesas activas; el período del servicio y los cargos únicos
+  facturados permanecen reservados. No se puede emitir otra del mismo período.
+- **Servicio local:** elimina primero sus facturas y cancela contratos vigentes.
+  El cliente se conserva. Los servicios de red mantienen su protección previa.
+
+Estas eliminaciones no envían órdenes a MikroTik/OLT ni crean tareas de red.
+Borrar un pago tampoco ejecuta cortes ni reconexiones. Se mantiene el modo de
+red sólo lectura. Las referencias, caja e historia previa se conservan; no hay
+restauración de registros desde la interfaz en esta versión.
+
+## Verificación
+
+268 comprobaciones API/Chromium aprobadas, incluida eliminación desde detalle y
+filas, saldos, roles, auditoría única, concurrencia, caja, reservas, portal/CSV y
+conservación de datos PEN/USD. Otras142 comprobaciones verificaron la actualización
+real desde3.1.0, config y SQL001–015 exactos y sólo016 aplicada. Compilación y
+sintaxis PHP aprobadas. Pruebas en
+laboratorio desechable; no se accedió a instalaciones ni equipos del operador.
+Las descargas anteriores se conservan a continuación.
+
+---
+
 # GIGARED ISP 3.1.0 para XAMPP — Facturación local
 
 [**Descargar ZIP completo 3.1.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.1.0-facturacion-local.zip)

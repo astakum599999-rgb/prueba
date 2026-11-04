@@ -1,3 +1,32 @@
+# GIGARED ISP 3.0.3 para XAMPP — Temas y tablas compactas
+
+[**Descargar ZIP completo 3.0.3**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.3-temas-tablas.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.0.3-temas-tablas.sha256)
+
+- El menú lateral completo cambia con el tema claro/oscuro: fondo, textos,
+  selección, categorías, marca y scrollbar; el tema se conserva al recargar.
+- Clientes y Planes ocultan el nombre del router y el prefijo **Perfil** en los
+  listados. Se conserva el nombre real del perfil. Los nombres comerciales
+  personalizados y los datos guardados se mantienen.
+- Filas de Clientes más compactas: padding vertical10→6px; fila visual de prueba
+  reducida de73 a61px sin achicar botones ni fuentes.
+
+1. Respalda carpeta/base, cierra el worker y detén Apache.
+2. Extrae **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando exactamente
+   **storage\config.php** y sus claves privadas.
+3. Inicia Apache/MySQL y pulsa **Ctrl+F5**, también en otros dispositivos.
+
+Desde3.0.0–3.0.2 no hay migraciones nuevas. Para versiones anteriores aplica
+las pendientes hasta014_fiber. Se incluyen las correcciones previas de acceso
+LAN y Origen MikroTik; no se modifica la configuración de equipos.
+
+Compilación de producción y revisión visual en Chromium de clientes, planes,
+ambos temas, persistencia y móvil390px aprobadas. SQL001–014 idéntico a3.0.2;
+no se accedió a instalaciones ni equipos reales. Descargas anteriores conservadas.
+
+---
+
 # GIGARED ISP 3.0.2 para XAMPP — Columna Origen MikroTik
 
 [**Descargar ZIP completo 3.0.2**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.2-origen-clientes.zip)

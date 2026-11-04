@@ -1,3 +1,35 @@
+# GIGARED ISP 3.0.4 para XAMPP — Acceso a routers y ONUs
+
+[**Descargar ZIP completo 3.0.4**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.4-acceso-equipos.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.0.4-acceso-equipos.sha256)
+
+Si al pulsar una IP aparece **ERR_BLOCKED_BY_RESPONSE**, la web del equipo puede
+estar rechazando su incrustación dentro del panel. Encima del marco se añade
+**Abrir en esta misma pestaña**: abre directamente el protocolo y puerto elegidos,
+sustituye temporalmente el panel por la web del equipo y mantiene una sola pestaña.
+Usa **Atrás** del navegador para regresar a Clientes.
+
+El recuadro se conserva para equipos compatibles. El acceso directo evita la
+restricción de incrustación; tu PC debe poder llegar a la IP/puerto y usar las
+credenciales y certificado propios del equipo. No cambia el firmware ni las
+políticas del dispositivo. No hay proxy ni redirección automática.
+
+1. Respalda carpeta/base, cierra el worker y detén Apache.
+2. Extrae **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando exactamente
+   **storage\config.php** y sus claves privadas.
+3. Inicia Apache/MySQL y pulsa **Ctrl+F5**.
+4. En Clientes pulsa la IP y luego **Abrir en esta misma pestaña**.
+
+Desde3.0.0–3.0.3 no hay SQL nuevo. Para versiones anteriores aplica las pendientes
+hasta014_fiber. Conserva las mejoras de temas, tablas y acceso LAN anteriores.
+
+Compilación y Chromium aprobados: reproducción de bloqueo XFO/CSP con web ficticia,
+acceso directo, Atrás, una sola pestaña, teclado, puertos y móvil. No se accedió
+al Windows ni equipos reales del operador. SQL001–014 idéntico a3.0.3.
+
+---
+
 # GIGARED ISP 3.0.3 para XAMPP — Temas y tablas compactas
 
 [**Descargar ZIP completo 3.0.3**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.3-temas-tablas.zip)

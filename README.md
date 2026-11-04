@@ -1,3 +1,53 @@
+# GIGARED ISP 3.6.0 para XAMPP — Sincronización MikroTik cada segundo
+
+[**Descargar ZIP completo 3.6.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.6.0-sincronizacion-mikrotik.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.6.0-sincronizacion-mikrotik.sha256)
+
+Ahora **cuentas PPPoE, perfiles, IP/sesiones activas y estado del router** se
+consultan con un ciclo normal de **1 segundo**. El aviso muestra
+**MikroTik · sincronización automática — Lecturas cada 1 s**.
+
+Las lecturas se comparten entre panel y worker, con bloqueos que evitan
+superposición. Los nombres siguen los comentarios y las velocidades los
+perfiles; se conservan notas, precios, moneda e historial. Los planes nuevos
+esperan su tarifa/activación local. No se importan contraseñas en masa ni se
+configura el MikroTik. El detalle del router incorpora identidad, RouterOS,
+uptime, CPU y memoria si dispone de permisos de lectura.
+
+## Actualizar
+
+1. Respalda carpeta y base. Cierra el worker y detén Apache.
+2. Extrae el ZIP y copia **nexoisp** sobre **C:\xampp\htdocs\nexoisp**,
+   conservando EXACTAMENTE **storage\config.php** y su clave original.
+3. Inicia Apache/MySQL y reinicia **INICIAR-WORKER.bat** con los archivos nuevos.
+4. Abre el sistema y pulsa **Ctrl+F5**. Comprueba **v3.6.0** en el menú.
+
+**Desde3.5.0 no hay migraciones nuevas.** Si vienes de versiones anteriores,
+aplica sólo las pendientes hasta018_pppoe_online como ADMIN en actualizar.php.
+Los routers con cuentas o perfiles previamente importados se incorporan solos;
+en un router nuevo importa una vez. No reinstales ni cambies checksums/AES.
+
+Mantén **INICIAR-WORKER.bat** activo para sincronizar con el navegador cerrado.
+El ciclo no garantiza latencia cero: respuestas lentas y cantidad de routers
+pueden alargarlo. Fallos usan reintentos2–30s; IP/conteo caducan a5s. Las ediciones
+manuales autorizadas mantienen sus permisos. Los diagnósticos e históricos
+conservan sus flujos; esta versión se centra en el inventario y estado MikroTik.
+Lee **SINCRONIZACION-MIKROTIK.txt** dentro del ZIP.
+
+## Verificación
+
+Compilación TypeScript/Vite,90comprobaciones API/Chromium,17de formularios/planes/router
+y166de actualización
+publicada3.5.2 a3.6.0, lectores PPP/perfiles y Socket, bloqueos de escritura y
+moneda/capacidades aprobados. SQL001–018 y configuración privada conservados.
+Pruebas con fixtures, sin acceder a equipos del operador. ZIP con CRC y
+manifiesto SHA256 por archivo; no contiene configuración de instalación.
+
+---
+
+## Historial de descargas
+
 # GIGARED ISP 3.5.2 para XAMPP — Aviso de lecturas aclarado
 
 [**Descargar ZIP completo 3.5.2**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.5.2-aviso-de-lecturas.zip)

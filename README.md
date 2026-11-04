@@ -1,3 +1,36 @@
+# GIGARED ISP 3.0.1 para XAMPP — Acceso por red local
+
+[**Descargar ZIP completo 3.0.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.1-red-local.zip)
+
+[Checksum SHA-256](gigared-isp-xampp-v3.0.1-red-local.sha256)
+
+Corrige **«Origen no autorizado»** al iniciar sesión desde otro dispositivo
+por la IP privada del Windows que ejecuta XAMPP. Se conserva el acceso desde
+localhost y la protección frente a sitios externos. La IP automática debe
+corresponder al socket Apache, con Host, protocolo y puerto coincidentes.
+Los alias, dominios y proxies se autorizan explícitamente con
+`allowed_web_origins`; el ZIP incluye **RED-LOCAL.txt** con instrucciones.
+
+1. Respalda la instalación/base, cierra el worker y detén Apache.
+2. Extrae la carpeta **nexoisp** sobre **C:\xampp\htdocs\nexoisp** conservando
+   exactamente **storage\config.php**. El ZIP no incluye ese archivo privado.
+3. Inicia Apache/MySQL. Desde otro equipo abre **http://IP-DEL-SERVIDOR/nexoisp/**,
+   con el puerto de Apache si corresponde, y pulsa **Ctrl+F5**.
+
+Desde3.0.0 **no hay migraciones nuevas**. Desde versiones anteriores aplica
+las pendientes hasta014_fiber. Puedes aplicar sólo el arreglo de origen
+reemplazando **app/auth.php** del ZIP con Apache detenido. No reinstales ni
+cambies la clave AES. Las cookies previamente seguras siguen requiriendo HTTPS.
+
+Validación:399 controles de origen,42 de integración API/Chromium,213 de lectura
+y30 de moneda/capacidades aprobados. SQL001–014 idéntico al ZIP3.0.0.
+Pruebas aisladas; no se accedió a equipos ni datos del operador.
+
+El ZIP completo conserva el módulo FTTH, las IPs automáticas y las funciones
+anteriores. Las descargas previas y sus notas permanecen a continuación.
+
+---
+
 # GIGARED ISP 3.0.0 para XAMPP — Fibra óptica nativa
 
 [**Descargar ZIP completo 3.0.0**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.0.0-ftth.zip)

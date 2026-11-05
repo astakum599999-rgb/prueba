@@ -1,3 +1,19 @@
+# GIGARED ISP 4.2.0 — Sesión al cerrar el navegador
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.0-cierre-sesion.zip) · [SHA-256](gigared-isp-xampp-v4.2.0-cierre-sesion.sha256)
+
+Al cerrar y volver a abrir la pestaña o ventana del panel/portal, se solicitan credenciales. Restaurar cookies anteriores no permite acceder directamente: el servidor exige además una clave exclusiva de la página que solo permanece en memoria. **Recargar toda la página también requiere iniciar sesión.** Las consultas automáticas y navegación interna conservan el acceso. Cada pestaña inicia su sesión por separado; cerrar una no desconecta las otras. Minimizar o pasar el navegador a segundo plano mantiene la página abierta.
+
+**Actualizar desde 4.1.1:** respalda carpeta/base, detén Apache y worker, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y su AES. Inicia Apache/MySQL y worker, pulsa Ctrl+F5 y vuelve a entrar. Verifica v4.2.0. **No hay migraciones nuevas**: se mantienen SQL 001–023. Desde versiones anteriores aplica las pendientes como ADMIN en `actualizar.php`, que ahora pide credenciales en cada visita. Lee `SESION-AL-CERRAR.txt` del ZIP.
+
+Se conservan la tarjeta Próximo corte, el autocorte a las 04:30 de Perú, datos de clientes y facturación, controles de red y API keys. El worker funciona independientemente del inicio/cierre de sesión. PDF y contratos se abren desde los botones del panel/portal autenticado.
+
+Validación en laboratorio: sesiones API/Chromium 83 comprobaciones (incluida emulación móvil), actualizador 20, altas 93, acciones PPP 86, reactivación 92 y perfil 83; Origen/LAN 399 y PEN 30. Backend Node: 32 pruebas unitarias. Compilaciones TypeScript/Vite y sintaxis de 397 PHP aprobadas. Configuración/AES y 23 migraciones preservadas; sin acceso a equipos del usuario. ZIP completo de 526 archivos y 1,392,115 bytes, CRC y manifiesto SHA-256 verificados, sin configuración privada.
+
+SHA-256: `cab30a042f59ffd58c9907200d850b3d46891f919d56538275fbfa4c09386659`.
+
+---
+
 # GIGARED ISP4.1.1 — Corrección de Próximo corte
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.1.1-tarjeta-proximo-corte.zip) · [SHA-256](gigared-isp-xampp-v4.1.1-tarjeta-proximo-corte.sha256)

@@ -1,3 +1,19 @@
+# GIGARED ISP 4.2.1 — Gracia en el corte fijo
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.1-gracia-corte-fijo.zip) · [SHA-256](gigared-isp-xampp-v4.2.1-gracia-corte-fijo.sha256)
+
+Los **Días de gracia** del cliente también aplazan su **Corte fijo programado**: fecha base **20/11 + 3 días = 23/11 a las 04:30 de Perú**. El campo conserva la fecha base elegida. La tarjeta roja muestra la fecha efectiva, los días de gracia y la fecha base. Worker y tarjeta comparten el mismo cálculo; las tareas antiguas se recalculan antes de enviar órdenes. Un corte normal anterior continúa apareciendo primero, con la fecha fija efectiva como adicional.
+
+Se aplica a los cortes fijos vigentes ya guardados. Cambiar solo la gracia no reactiva un corte fijo consumido. No reescribe facturas emitidas, pagos o vencimientos. Se mantienen promesas, suspensión manual, permisos y sesiones de 4.2.0.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker/tarea programada, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y AES. Inicia Apache/MySQL y **reinicia el worker** para cargar la nueva regla. Pulsa Ctrl+F5, vuelve a iniciar sesión y verifica v4.2.1. **No hay migraciones nuevas desde 4.2.0**; se mantienen SQL 001–023. Desde versiones anteriores aplica las pendientes como ADMIN en `actualizar.php`. Lee `GRACIA-CORTE-FIJO.txt` del ZIP.
+
+Validación: cálculo/decisión 28 comprobaciones; API/Chromium/worker 52, incluido un corte encolado cancelado durante la nueva gracia y cero escrituras a RouterOS. Regresiones de perfil 83 y sesiones 83, PEN 30; sintaxis de 397 PHP y compilación TypeScript/Vite aprobadas. Laboratorio aislado con simulador, sin acceso a equipos del usuario. Config/AES, facturas e historial preservados. ZIP completo: 527 archivos, 1,395,278 bytes; CRC y manifiesto SHA-256 verificados, sin configuración privada.
+
+SHA-256: `ab030b134a7d747de8a034d99c3c937e15aae83a12bf545a50a62c9eeb7979d0`.
+
+---
+
 # GIGARED ISP 4.2.0 — Sesión al cerrar el navegador
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.0-cierre-sesion.zip) · [SHA-256](gigared-isp-xampp-v4.2.0-cierre-sesion.sha256)

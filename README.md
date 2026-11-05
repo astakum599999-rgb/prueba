@@ -1,3 +1,21 @@
+# GIGARED ISP4.1.0 — Autocorte04:30 y Fecha de pago
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.1.0-autocorte-0430.zip) · [SHA-256](gigared-isp-xampp-v4.1.0-autocorte-0430.sha256)
+
+Activa el autocorte solicitado a las **04:30 a. m., America/Lima**, solo para los clientes con Aplicar corte y cuenta de red configurados. Las condiciones se guardan cliente por cliente; una configuración posterior al horario entra en el siguiente ciclo. Los pagos/promesas pueden reconectar inmediatamente. El worker prepara las reglas propias al ejecutar su primera tarea elegible. El bloqueo general de red y `storage/config.php`/AES permanecen intactos.
+
+En Clientes, **Zona** pasa a **Fecha de pago**: vencimiento pendiente más antiguo o próximo cobro, dd/mm/aaaa, resaltado de vencidas y Sin configurar cuando faltan datos. La zona original sigue almacenada.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando `storage/config.php`. Inicia Apache/MySQL y como ADMIN abre `http://localhost/nexoisp/actualizar.php`. Aplica **023_autocut_0430** y anteriores pendientes; reinicia el worker/tarea programada y pulsa Ctrl+F5. La migración añade un permiso y fija activación/horario; conserva SQL001–022 y datos comerciales.
+
+El servidor y el worker deben estar funcionando. La cuenta API necesita permisos de escritura y FastTrack debe estar desactivado para garantizar el corte. Si el servidor estuvo apagado, procesa los cortes elegibles al volver a funcionar después del horario. Consulta `AUTOCORTE-0430.txt` y `PRUEBAS.txt` incluidos.
+
+Validación: REST71, Socket72, navegador24, actualización4.0.0→4.1.0 con72 comprobaciones, transporte exclusivo41, perfil83 y regresiones de permisos/altas/acciones manuales. PHP8.2:397 archivos con sintaxis válida. Pruebas en simuladores, sin acceso a equipos del usuario. ZIP completo522 archivos, manifest SHA-256 y CRC verificados.
+
+SHA-256: `15633ec94f5c0cda8eece7ed3bef186e35abe987b1949cc4e90c65352d7b041d`.
+
+---
+
 # GIGARED ISP 4.0.0 — Perfil de clientes
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.0.0-perfil-clientes.zip) · [SHA-256](gigared-isp-xampp-v4.0.0-perfil-clientes.sha256)

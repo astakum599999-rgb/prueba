@@ -1,3 +1,21 @@
+# GIGARED ISP 4.2.2 — Planes y perfiles en vivo
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.2-planes-tiempo-real.zip) · [SHA-256](gigared-isp-xampp-v4.2.2-planes-tiempo-real.sha256)
+
+**Planes de Internet y Perfiles MikroTik** reflejan altas, velocidades, cambios de nombre y eliminaciones mediante el ciclo compartido de lectura, con intervalo objetivo de **un segundo**. Los perfiles eliminados desaparecen de ambas tablas habituales; **Mostrar eliminados de MikroTik** permite consultar el historial sin perder servicios, tarifas ni facturas.
+
+**Actualizar**, junto a **Importar perfiles de MikroTik**, solicita una lectura nueva de los routers ya incorporados para recuperarse de errores, incluso si esperan un reintento. Respeta las pausas y lecturas/ediciones en curso. Un error o inventario inválido conserva los últimos datos válidos. La sincronización no modifica RouterOS. Los precios y nombres comerciales locales se conservan; perfiles nuevos con velocidad admitida quedan pendientes de tarifa.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker/tarea programada, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y AES. Inicia Apache/MySQL, reinicia el worker, pulsa Ctrl+F5, vuelve a entrar y verifica v4.2.2. **No hay migraciones nuevas desde 4.2.1**; se mantienen SQL 001–023. Desde versiones anteriores aplica las pendientes como ADMIN en `actualizar.php`. Lee `PLANES-TIEMPO-REAL.txt` del ZIP.
+
+Mantén el worker/tarea programada activo para sincronizar con el navegador cerrado. Con el panel abierto, ADMIN/TÉCNICO también ejecutan la lectura compartida. Equipos lentos o sin conexión pueden tardar más de un segundo; se informa y reintenta sin superponer consultas. Se conservan sesiones y gracia del corte fijo.
+
+Validación: API/Chromium/worker 89 comprobaciones por REST y Socket, con cero escrituras RouterOS; importación de perfiles 17 pruebas/131 comprobaciones; sesiones 83, gracia/cortes 28, PEN 30. TypeScript/Vite compilado y sintaxis de 397 PHP aprobada. Config/AES, datos financieros y 23 migraciones preservados. Laboratorio aislado, sin equipos reales del usuario. ZIP completo de 528 archivos y 1,400,615 bytes, CRC/manifiesto verificados y sin configuración privada.
+
+SHA-256: `d7789a3968c5c58e5323a9b771712eb8f89ce5c806c490dd3d02c177b1c9007d`.
+
+---
+
 # GIGARED ISP 4.2.1 — Gracia en el corte fijo
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.1-gracia-corte-fijo.zip) · [SHA-256](gigared-isp-xampp-v4.2.1-gracia-corte-fijo.sha256)

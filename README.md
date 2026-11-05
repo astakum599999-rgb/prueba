@@ -1,3 +1,17 @@
+# GIGARED ISP4.1.1 — Corrección de Próximo corte
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.1.1-tarjeta-proximo-corte.zip) · [SHA-256](gigared-isp-xampp-v4.1.1-tarjeta-proximo-corte.sha256)
+
+La tarjeta de Resumen incluye **Corte fijo programado**: fijo20/11/2026 frente a normal21/11/2026 muestra **20/11/2026 a las04:30**. Si el normal es anterior, muestra esa fecha y la fija adicional. Un fijo ya utilizado deja de aparecer como pendiente. Un corte fijo con el normal desactivado se muestra correctamente. Se conserva el horario de Perú y la tarjeta se actualiza al guardar o recargar.
+
+**Actualizar desde4.1.0:** respalda carpeta/base, detén Apache y worker, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y AES. Inicia Apache/MySQL y worker, pulsa Ctrl+F5 y verifica v4.1.1. **No hay migraciones nuevas desde4.1.0.** Si vienes de una versión anterior, aplica las pendientes hasta023 como ADMIN en `actualizar.php`. Lee `TARJETA-PROXIMO-CORTE.txt` del ZIP.
+
+La corrección es de presentación: reglas del worker, cortes, gracia, pagos/promesas, permisos y23SQL permanecen idénticos a4.1.0. Validado con11 comprobaciones de cálculo y37 de API/Chromium; escenarios de fecha fija, normal anterior, programación utilizada, limpiar/reprogramar, temas y recarga. Cero órdenes de escritura a RouterOS; datos comerciales, config/AES e historial intactos. TypeScript/Vite compilado; PHP modificado con sintaxis válida. ZIP completo523 archivos, manifest SHA-256/CRC verificados y sin config privada.
+
+SHA-256: `fca535f50ce4c5c233582cefb079210c313c8582e1e2cff880afb1563c11a632`.
+
+---
+
 # GIGARED ISP4.1.0 — Autocorte04:30 y Fecha de pago
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.1.0-autocorte-0430.zip) · [SHA-256](gigared-isp-xampp-v4.1.0-autocorte-0430.sha256)

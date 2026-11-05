@@ -1,3 +1,19 @@
+# GIGARED ISP 4.0.0 — Perfil de clientes
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.0.0-perfil-clientes.zip) · [SHA-256](gigared-isp-xampp-v4.0.0-perfil-clientes.sha256)
+
+Pulsa el nombre del cliente para abrir Resumen, Servicios, Facturación, Tickets, Email & SMS, Documentos, Estadísticas y Logs. Incluye GPS editable, PDF, pagos/promesas, soporte con notas, avisos y configuración individual de fechas, gracia, mora, impuestos y corte/reducción por deuda. Basado en investigación de lectura del demo y documentación de Mikrowisp; implementación independiente integrada en GIGARED.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y AES. Inicia Apache/MySQL, abre `http://localhost/nexoisp/actualizar.php` como ADMIN y aplica `022_client_profile_billing` (y anteriores pendientes). Reinicia el worker/tarea programada y pulsa Ctrl+F5. No reinstales ni borres la base. SQL001–021 permanecen idénticos; 022 añade nueve tablas.
+
+Los cortes automáticos están desactivados por defecto y respetan el modo lectura. Las políticas pueden usarse para facturación local; controlar una cuenta importada requiere vinculación explícita y habilitar/preparar la red. Lee `PERFIL-CLIENTES.txt`, `INVESTIGACION-PERFIL-MIKROWISP.md` y `PRUEBAS.txt` del ZIP. Google Maps requiere clave propia; correo/SMS/Telegram requieren gateway. Los PDF son comprobantes internos, no facturación electrónica SUNAT.
+
+Validado en Apache/PHP8.2/MariaDB10.4: perfil API82, motor REST115/Socket104, navegador26, actualización desde3.8.1 con197 comprobaciones; lint396archivos y regresiones de permisos/alta/activación. Las pruebas no accedieron a routers del usuario. ZIP completo519archivos; manifiesto SHA-256 interno, CRC y privacidad comprobados.
+
+SHA-256: `e39cf7181e237700e25f0cf23fbdca98f31b192cc8c2db91abe868accbad89f4`.
+
+---
+
 # GIGARED ISP 3.8.1 para XAMPP Windows
 
 [**DESCARGAR ZIP COMPLETO 3.8.1**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v3.8.1-activar-manual.zip)

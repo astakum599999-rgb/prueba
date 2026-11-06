@@ -1,3 +1,42 @@
+# GIGARED ISP 4.5.0 para XAMPP — Telegram
+
+[Descargar ZIP completo 4.5.0](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.5.0-telegram.zip)
+
+**Administración → Telegram** permite configurar un bot privado para:
+
+- Buscar clientes por nombre, documento, código o usuario PPPoE y consultar facturas.
+- Registrar pagos en soles u otra moneda de la factura con importe, método, referencia y confirmación.
+- Consultar la reconexión y recibir su resultado cuando MikroTik la confirme.
+- Activar manualmente una cuenta PPPoE suspendida manualmente, con confirmación independiente.
+
+Cada operador se vincula por ID de Telegram a un usuario activo del sistema y sus permisos. El registro de pagos y las políticas de facturación/red existentes se conservan. Repetir mensajes, botones o envíos pendientes no duplica el cobro. El token se guarda cifrado y no vuelve al navegador.
+
+El worker continuo existente inicia y supervisa un proceso separado de Telegram. El sondeo HTTPS saliente funciona con XAMPP en red local y permite mantener el ritmo de facturación y lecturas del router.
+
+Para actualizar desde 4.4.1:
+
+1. Respalda carpeta/base y detén Apache y el worker/tarea programada al copiar.
+2. Copia el **contenido de nexoisp** del ZIP dentro de `C:\xampp\htdocs\nexoisp`, conservando exactamente `storage/config.php` y su clave AES. No reinstales ni borres la base.
+3. Inicia Apache/MySQL y aplica **025_telegram** como ADMIN en `http://localhost/nexoisp/actualizar.php`. Desde otro equipo usa el nombre/IP del servidor.
+4. Reinicia el worker continuo/tarea programada. Pulsa **Ctrl+F5**, inicia sesión y comprueba **v4.5.0**.
+5. En **Administración → Telegram**, guarda tu token de @BotFather con el bot desactivado, pulsa **Probar conexión** y después actívalo. Envía `/id` al bot y autoriza ese ID y sus permisos en Operadores.
+
+Telegram comienza desactivado. La migración añade seis tablas vacías; SQL 001–024, datos y configuración anteriores permanecen intactos. Consulta **TELEGRAM.txt** y **GUIA-ACTUALIZAR.txt** incluidos. Un pago respeta las demás deudas y las suspensiones manuales. Verifica el abono antes de confirmarlo: esta versión no consulta bancos/Yape/Plin ni valida fotografías automáticamente.
+
+Validación: **100** comprobaciones API/Chromium con Telegram y RouterOS REST simulados; **5** de supervisor/hijo automático; **30** de actualización real desde el ZIP 4.4.1; **137** de borrado definitivo, incluidas las tablas Telegram. TypeScript/Vite y sintaxis de **405** PHP aprobados. Vistas celular/escritorio y ambos temas verificadas. El bot real se verifica al configurar tu propio token; no se utilizaron tus equipos ni credenciales.
+
+ZIP completo: **556 archivos**, **1.719.495 bytes**, CRC y **555 entradas del manifiesto SHA-256** comprobadas; sin configuración privada.
+
+[Checksum SHA-256](gigared-isp-xampp-v4.5.0-telegram.sha256):
+
+```
+a8fb78c10956345b59f9946231e94112d0fd29d8db1234991f4ee3e59ad922ee
+```
+
+---
+
+Versiones anteriores:
+
 # GIGARED ISP 4.4.1 para XAMPP — Dashboard más compacto
 
 [Descargar ZIP completo 4.4.1](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.4.1-dashboard-compacto.zip)

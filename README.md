@@ -1,3 +1,31 @@
+# GIGARED ISP 4.4.1 para XAMPP — Dashboard más compacto
+
+[Descargar ZIP completo 4.4.1](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.4.1-dashboard-compacto.zip)
+
+- **Últimos conectados:** encabezado y filas más pequeños, conservando los 10 clientes, IP, hora, estado y acceso al perfil.
+- **Tráfico global de clientes:** gráfica con la mitad de altura y espacios reducidos. El panel completo ocupa aproximadamente el 56–57 % de su altura anterior en las vistas comprobadas; conserva descarga/subida y diario, últimos 7 días, mes y año.
+- Ajuste para celular y escritorio, temas claro y oscuro. Mantiene la lectura e historial de MikroTik y las funciones de facturación, pagos y cortes.
+
+Para actualizar desde 4.4.0:
+
+1. Respalda carpeta y base; detén Apache y el worker/tarea programada mientras copias.
+2. Extrae el ZIP y copia el **contenido de nexoisp** dentro de `C:\xampp\htdocs\nexoisp`, conservando exactamente `storage/config.php` y su clave AES. No reinstales ni borres la base.
+3. Inicia Apache/MySQL y reinicia el worker/tarea programada. Pulsa **Ctrl+F5**, inicia sesión y comprueba **v4.4.1**; en celular recarga la página.
+
+**Desde 4.4.0 no hay migraciones nuevas.** SQL 001–024 permanece intacto. Desde versiones anteriores aplica las pendientes, incluida 024, como ADMIN en `actualizar.php`. Consulta `GUIA-ACTUALIZAR.txt` y `DASHBOARD-TRAFICO.txt` dentro del ZIP.
+
+Validación: TypeScript/Vite aprobados; Chromium en 1440 y 390 px, claro/oscuro, con datos de muestra de presentación. Ambas series, 10 clientes, cuatro períodos y ausencia de desbordamiento y errores de JavaScript verificados. Comparación byte a byte de SQL y lógica PHP con 4.4.0; ZIP con CRC y 546 entradas SHA-256 verificadas, sin configuración privada.
+
+ZIP completo: **547 archivos**, **1.690.059 bytes**. [Checksum SHA-256](gigared-isp-xampp-v4.4.1-dashboard-compacto.sha256):
+
+```
+9b2a594b44d96252cb40a74b8e129b2a3dc6f03aa07e523c6562334a6e6491b5
+```
+
+---
+
+Versiones anteriores:
+
 # GIGARED ISP 4.4.0 — Acceso, menú acordeón y tráfico global
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.4.0-dashboard-trafico.zip) · [SHA-256](gigared-isp-xampp-v4.4.0-dashboard-trafico.sha256)

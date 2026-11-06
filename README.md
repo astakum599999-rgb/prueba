@@ -1,3 +1,26 @@
+# GIGARED ISP 4.4.0 — Acceso, menú acordeón y tráfico global
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.4.0-dashboard-trafico.zip) · [SHA-256](gigared-isp-xampp-v4.4.0-dashboard-trafico.sha256)
+
+- Ojo en la contraseña del panel para mostrarla u ocultarla sin enviar el formulario.
+- Grupos del menú inicialmente cerrados: abrir uno cierra el anterior; pulsarlo de nuevo lo cierra.
+- **Tráfico global de clientes** con descarga y subida en la misma gráfica, y vistas **Diario, Últimos 7 días, Último mes y Último año**. Tasas reales de los clientes registrados, actualización compartida cada segundo y huecos donde faltan mediciones.
+- **Últimos conectados** sustituye Actividad reciente y muestra hasta 10 clientes con su conexión PPPoE detectada, IP y estado. Pulsar el nombre abre su perfil.
+
+**El historial empieza a construirse con las mediciones recogidas desde esta actualización.** Mantén el worker activo para recopilar datos con el panel cerrado. La lectura no crea perfiles, colas, secrets ni reglas de red. Los trabajos financieros/de red tienen prioridad en el worker. Los fondos rotativos de inicio de sesión y el icono G se conservan.
+
+**Actualizar desde 4.3.2:** respalda carpeta/base, detén Apache y worker/tarea programada y copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp`, reemplazando los archivos y conservando exactamente `storage/config.php` y su clave AES. Inicia Apache/MySQL y abre **`http://localhost/nexoisp/actualizar.php`** con tu administrador; aplica **`024_dashboard_insights`**. Luego **reinicia el worker**, pulsa Ctrl+F5 e inicia sesión. Comprueba v4.4.0. Desde otro dispositivo usa la dirección habitual del servidor. No reinstales ni borres la base.
+
+La migración añade cuatro tablas vacías para conexiones, contadores y agregados. SQL 001–023 y sus checksums permanecen intactos. Las conexiones y contadores individuales se eliminan con el borrado definitivo del retirado; el histórico global no contiene identificadores de clientes. Lee `DASHBOARD-TRAFICO.txt`, `GUIA-ACTUALIZAR.txt` y `PRUEBAS.txt`.
+
+Validación: **100 comprobaciones API/Chromium** para REST/Socket, contadores, cuatro períodos, reconexiones, privacidad, prioridad del CLI, ojo y acordeón en escritorio/celular; **28 de actualización real 4.3.2 → 4.4.0**, preservando datos/config/AES/23 checksums y sin I/O de routers durante la migración; **135 de borrado definitivo**, **83 de sesiones** y **7 de contención entre lectores**. UInt64 16; reglas de corte/deuda 27, facturación 17 + 3 perfiles técnicos, permisos de transporte 41 y límite lectura/facturación 7. PHP8.2: 400 archivos con sintaxis válida; TypeScript/Vite compilado para XAMPP. Laboratorio aislado con MariaDB en modo de tablas de Windows y protocolos simulados; sin acceso a los equipos físicos del usuario.
+
+ZIP completo: **547 archivos, 1,687,859 bytes**, CRC, 546 entradas del manifiesto y coincidencia de fuentes/interfaz verificados; sin configuración privada.
+
+SHA-256: `f6766cb0a0d5fe974962ce6e986061244d3e6bacb888aaa9f24bf056c4c986fa`.
+
+---
+
 # GIGARED ISP 4.3.2 — Fondos del inicio de sesión e icono G
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.3.2-fondos-login.zip) · [SHA-256](gigared-isp-xampp-v4.3.2-fondos-login.sha256)

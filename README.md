@@ -1,3 +1,21 @@
+# GIGARED ISP 4.2.3 — Cortes vencidos en la siguiente revisión
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.3-cortes-vencidos.zip) · [SHA-256](gigared-isp-xampp-v4.2.3-cortes-vencidos.sha256)
+
+Si guardas la configuración del cliente después de las **04:30 de Perú** y su corte ya venció, el worker lo procesa en su siguiente revisión, normalmente cada minuto según la cola y conexión. Se elimina el aplazamiento al día siguiente por haber guardado tarde. Se mantienen el inicio diario a las 04:30, fechas futuras, gracia, promesas, pagos, exclusiones y permisos. Guardar no envía directamente órdenes de red.
+
+El corte fijo confirmado mantiene su restricción sobre la deuda original; consumir la fecha no reactiva un servicio impagado. Pago o promesa que cubra la deuda permiten restaurarlo; una promesa vencida vuelve a evaluarse. La fecha del primer uso queda congelada para excluir nuevas facturas posteriores. Resumen muestra la última revisión de facturación; el resultado individual se confirma en Servicios, Logs y Tareas.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker/tarea programada, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y AES. Inicia Apache/MySQL y **cierra el worker anterior y vuelve a iniciarlo**. Pulsa Ctrl+F5, vuelve a entrar y verifica v4.2.3. **Al reiniciar el worker podrán procesarse los cortes vencidos ya configurados.** Sin nuevas migraciones desde 4.2.2; se mantienen SQL 001–023. Desde versiones anteriores aplica las pendientes como ADMIN en `actualizar.php`. Lee `CORTES-VENCIDOS.txt`.
+
+Se conservan la sincronización de planes/perfiles cada segundo, reintento manual, sesiones del navegador y datos comerciales. La cuenta API debe permitir las escrituras necesarias y FastTrack estar desactivado; los errores se muestran en Servicios/Tareas.
+
+Validación: API/worker CLI real 94 comprobaciones sobre simuladores REST/Socket, con cortes normales y fijos configurados después del horario, pagos/promesas, continuidad y tareas antiguas pagadas. Ventana/deuda pura 27, regresión de planes 88, sesiones 83, gracia/tarjeta 28 y PEN 30; sintaxis de 397 PHP y compilación TypeScript/Vite aprobadas. Laboratorio aislado, sin acceso a equipos reales del usuario. Facturas sin cambios por cortar; configuración/AES y 23 migraciones preservados. ZIP completo: 529 archivos, 1,403,925 bytes; CRC/manifiesto verificados y sin configuración privada.
+
+SHA-256: `6abf8478fec41d9d307a201d2197a68b821bab78cc6f0666fd8a07bf5d5e8744`.
+
+---
+
 # GIGARED ISP 4.2.2 — Planes y perfiles en vivo
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.2-planes-tiempo-real.zip) · [SHA-256](gigared-isp-xampp-v4.2.2-planes-tiempo-real.sha256)

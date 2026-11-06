@@ -1,3 +1,19 @@
+# GIGARED ISP 4.3.0 — Eliminar definitivamente retirados
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.3.0-eliminar-retirados.zip) · [SHA-256](gigared-isp-xampp-v4.3.0-eliminar-retirados.sha256)
+
+Como **ADMIN**, abre **Clientes → filtro Retirado → Eliminar definitivamente**. La vista previa muestra los registros y efectos de caja; exige escribir **ELIMINAR**. Borra físicamente el cliente y sus servicios, facturas/líneas/pagos, promesas, cargos/descuentos, notas, tickets, contratos, portal/sesiones, datos de red e historial. **Es irreversible y modifica saldos de caja al borrar movimientos vinculados a esos pagos y sus reversos.**
+
+Las tareas/auditorías compartidas conservan al otro cliente. Las observaciones antiguas de sesión se limpian sin tocar cuentas reutilizadas por otros clientes. Los equipos de inventario se desvinculan y quedan Disponibles; planes, routers, OLTs y cuentas de caja se conservan. Se bloquean clientes activos, retiros/ediciones/tareas en curso, cuentas todavía presentes y relaciones cruzadas. La transacción revierte todo si falla. La operación de borrado no envía comandos a MikroTik/OLT. La auditoría general no conserva ID, nombre, código ni copia del cliente borrado.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker/tarea programada, copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y AES. Inicia Apache/MySQL y reinicia el worker; pulsa Ctrl+F5, vuelve a entrar como ADMIN y verifica v4.3.0. **No hay migraciones nuevas desde 4.2.3**; se mantienen SQL 001–023. Desde versiones antiguas aplica las pendientes en `actualizar.php`. Lee `ELIMINAR-RETIRADOS.txt` para alcance y uso.
+
+Validación: API/Chromium 130 comprobaciones con MariaDB en modo de tablas habitual de Windows (`lower_case_table_names=1`), que cubren todos los módulos asociados, permisos, cambios de caja, cancelación, vista previa obsoleta, rollback al fallar el último DELETE, limpieza de caché y aislamiento de otros clientes. Depuración compartida 10, autocorte REST/Socket 93, sesiones 83 y PEN 30. PHP 8.2: 398 archivos con sintaxis válida; TypeScript/Vite compilado. Cero datos del cliente de prueba tras borrar, configuración/AES y 23 migraciones intactos. Laboratorio aislado, sin Windows ni equipos físicos del usuario. ZIP completo: 532 archivos, 1,417,715 bytes; CRC/manifiesto verificados y sin configuración privada.
+
+SHA-256: `426ecf626c475c23ad07740265253a15fbfe858213d530f09d766a92037263c4`.
+
+---
+
 # GIGARED ISP 4.2.3 — Cortes vencidos en la siguiente revisión
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.2.3-cortes-vencidos.zip) · [SHA-256](gigared-isp-xampp-v4.2.3-cortes-vencidos.sha256)

@@ -1,3 +1,21 @@
+# GIGARED ISP 4.3.1 — Confirmar el borrado con un botón
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.3.1-confirmar-eliminacion.zip) · [SHA-256](gigared-isp-xampp-v4.3.1-confirmar-eliminacion.sha256)
+
+En **Clientes → filtro Retirado → Eliminar definitivamente** aparece **¿Estás seguro de eliminar definitivamente a este cliente?**. Pulsa **Sí, eliminar definitivamente** o **Cancelar**. Ya no necesitas escribir ELIMINAR. Se conservan la vista previa y los permisos de ADMIN, la verificación de cambios y el borrado en una transacción.
+
+El borrado es irreversible e incluye las facturas y los pagos asociados. **Cancelar conserva los datos.** La API recibe `confirmation: true` al pulsar el botón afirmativo, con el token firmado de la vista previa; rechaza confirmaciones ausentes o negativas.
+
+**Actualizar desde 4.3.0:** respalda carpeta/base, detén Apache y worker/tarea programada y copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y su clave AES. Inicia Apache/MySQL, reinicia el worker, pulsa Ctrl+F5 e inicia sesión. Comprueba v4.3.1. Sin nuevas migraciones: se mantienen SQL 001–023. Lee `ELIMINAR-RETIRADOS.txt`.
+
+Validación en laboratorio aislado: **134 comprobaciones API/Chromium**, incluida la confirmación mediante botón sin campo de texto, cancelación, permisos, token, aislamiento de otros clientes y reversión integral ante un fallo. PHP8.2: 398 archivos con sintaxis válida; TypeScript/Vite compilado para XAMPP. SQL y módulos de facturación, autocorte y sincronización sin cambios. No se accedió a equipos reales del usuario.
+
+ZIP completo: **532 archivos, 1,418,486 bytes**, CRC y manifiesto SHA-256 verificados; no incluye configuración privada.
+
+SHA-256: `3cd758a72f7b05244b121cad023cb8948a24756ea12ecf59bd8bb1917e8ee4a4`.
+
+---
+
 # GIGARED ISP 4.3.0 — Eliminar definitivamente retirados
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.3.0-eliminar-retirados.zip) · [SHA-256](gigared-isp-xampp-v4.3.0-eliminar-retirados.sha256)

@@ -1,3 +1,21 @@
+# GIGARED ISP 4.3.2 — Fondos del inicio de sesión e icono G
+
+[**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.3.2-fondos-login.zip) · [SHA-256](gigared-isp-xampp-v4.3.2-fondos-login.sha256)
+
+Las tres imágenes proporcionadas en `imagenes.zip` aparecen **solo en la pantalla de inicio de sesión del panel** y cambian cada **20 segundos**, tanto en celular como en escritorio. Se incluyen localmente con sus bytes originales. La tarjeta conserva los campos escritos y funciona en los temas claro y oscuro. El icono de la pestaña del navegador ahora muestra una **G**.
+
+El fondo se adapta a la pantalla sin deformar las imágenes. La rotación se detiene al acceder al panel y se pausa al ocultar la pestaña. Con movimiento reducido se elimina el fundido entre imágenes. El acceso se ajustó también para pantallas de 320 píxeles.
+
+**Actualizar:** respalda carpeta/base, detén Apache y worker/tarea programada y copia `nexoisp` sobre `C:\xampp\htdocs\nexoisp` conservando exactamente `storage/config.php` y su clave AES. Inicia Apache/MySQL y reinicia el worker; pulsa Ctrl+F5 e inicia sesión. Comprueba v4.3.2. En celular recarga el acceso. Sin nuevas migraciones desde 4.3.1: SQL 001–023 idénticos. Lee `FONDOS-E-ICONO.txt`.
+
+Validación en laboratorio: cinco combinaciones de pantalla/tema con las imágenes reales (1440 y 390 píxeles en claro/oscuro y 320 con movimiento reducido), ciclo de tres imágenes a 20/60 s con reloj acelerado y cambio observado a los 19951 ms de tiempo real en 320. Conservación de los campos, cambio de tema, acceso y recarga comprobados. Regresión de sesiones API/Chromium: **84 comprobaciones**. PHP8.2: 398 archivos con sintaxis válida; TypeScript/Vite compilado para XAMPP. Los módulos PHP conservan su lógica y solo actualizan el número de versión. No se accedió al Windows ni a equipos reales del usuario.
+
+ZIP completo: **541 archivos, 1,664,447 bytes**, CRC y 540 entradas del manifiesto SHA-256 verificados; sin configuración privada. Incluye imágenes, PHP, interfaz compilada, fuente React y guías.
+
+SHA-256: `09062b173faa59bc1a789a5db3efc09dcb8e122798165d94209439d374b9eaa2`.
+
+---
+
 # GIGARED ISP 4.3.1 — Confirmar el borrado con un botón
 
 [**Descargar ZIP completo para XAMPP Windows**](https://github.com/astakum599999-rgb/prueba/raw/refs/heads/descargas-xampp/gigared-isp-xampp-v4.3.1-confirmar-eliminacion.zip) · [SHA-256](gigared-isp-xampp-v4.3.1-confirmar-eliminacion.sha256)
